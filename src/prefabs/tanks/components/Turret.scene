@@ -1,0 +1,52 @@
+{
+    "id": "9a7f20d0-cc31-4c43-98d8-d1aaac10bd7e",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 1280,
+        "borderHeight": 720
+    },
+    "displayList": [
+        {
+            "type": "Container",
+            "id": "01e2ca33-3304-4bb1-b0fa-654909a8fee6",
+            "label": "container_1",
+            "list": [
+                {
+                    "type": "Image",
+                    "id": "75748794-27ba-4420-ae58-e76a186b06a3",
+                    "label": "base",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Weapon_Turrets_Blue",
+                        "frame": "Gun_Turret_01.png"
+                    }
+                },
+                {
+                    "type": "Image",
+                    "id": "4b78e0c6-1747-4010-af31-dc090dbc43c9",
+                    "label": "barrel",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Guns_Barrels",
+                        "frame": "Gun_Barrel_01.png"
+                    },
+                    "y": -51,
+                    "originY": 1
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor 2D - Scene Editor",
+        "url": "https://phasereditor2d.com",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}

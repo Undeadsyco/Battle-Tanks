@@ -1,0 +1,112 @@
+{
+    "id": "ef9c397d-71f4-46e8-b58a-e1eab75cd275",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 1280,
+        "borderHeight": 720
+    },
+    "displayList": [
+        {
+            "type": "Container",
+            "id": "b5cec40d-3402-45bd-935d-0e0e4fb4345c",
+            "label": "container_1",
+            "list": [
+                {
+                    "prefabId": "00b9dd69-81d8-4613-8f1e-eabe75e261e0",
+                    "id": "47c337fa-86cb-47fa-94b1-5f86a5790663",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "hull",
+                    "scope": "CLASS",
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "prefabId": "9a7f20d0-cc31-4c43-98d8-d1aaac10bd7e",
+                    "id": "7b7c909e-8b55-4557-9c68-11b35407aa69",
+                    "unlock": [
+                        "x",
+                        "y"
+                    ],
+                    "label": "turret",
+                    "scope": "CLASS",
+                    "x": -2,
+                    "y": 49
+                },
+                {
+                    "prefabId": "01405b49-8076-46f2-bf2b-c45fbb717039",
+                    "id": "9b702595-1344-4c18-8cf5-2d512a1ae128",
+                    "label": "textureManager",
+                    "scope": "CLASS"
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor 2D - Scene Editor",
+        "url": "https://phasereditor2d.com",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    },
+    "prefabProperties": [
+        {
+            "name": "color",
+            "label": "Color",
+            "tooltip": "",
+            "defValue": 1,
+            "customDefinition": true,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "trackType",
+            "label": "Track Type",
+            "tooltip": "",
+            "defValue": 1,
+            "customDefinition": true,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "hullType",
+            "label": "Hull Type",
+            "tooltip": "",
+            "defValue": 1,
+            "customDefinition": true,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "turretType",
+            "label": "Turret Type",
+            "tooltip": "",
+            "defValue": 1,
+            "customDefinition": true,
+            "type": {
+                "id": "number"
+            }
+        },
+        {
+            "name": "barrelType",
+            "label": "Barrel Type",
+            "tooltip": "",
+            "defValue": 1,
+            "customDefinition": true,
+            "type": {
+                "id": "number"
+            }
+        }
+    ]
+}

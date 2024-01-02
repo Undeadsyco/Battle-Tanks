@@ -4,10 +4,9 @@
 /* START OF COMPILED CODE */
 
 import Phaser from "phaser";
-import { OnPointerDownScript } from "@phasereditor2d/scripts-core";
-import { PushActionScript } from "@phasereditor2d/scripts-simple-animations";
 import { OnAwakeScript } from "@phasereditor2d/scripts-core";
 import { MoveInSceneActionScript } from "@phasereditor2d/scripts-simple-animations";
+import Tank from "../prefabs/tanks/Tank";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -23,23 +22,8 @@ export default class Level extends Phaser.Scene {
 
 	editorCreate(): void {
 
-		// fufuSuperDino
-		const fufuSuperDino = this.add.image(640, 257, "FufuSuperDino");
-
-		// onPointerDownScript
-		const onPointerDownScript = new OnPointerDownScript(fufuSuperDino);
-
-		// pushAction
-		new PushActionScript(onPointerDownScript);
-
-		// onAwakeScript_1
-		const onAwakeScript_1 = new OnAwakeScript(fufuSuperDino);
-
-		// moveInSceneActionScript_1
-		const moveInSceneActionScript_1 = new MoveInSceneActionScript(onAwakeScript_1);
-
 		// text
-		const text = this.add.text(640, 458, "", {});
+		const text = this.add.text(611, 357, "", {});
 		text.setOrigin(0.5, 0.5);
 		text.text = "Phaser 3 + Phaser Editor 2D\nWebpack + TypeScript";
 		text.setStyle({ "align": "center", "fontFamily": "Arial", "fontSize": "3em" });
@@ -50,8 +34,45 @@ export default class Level extends Phaser.Scene {
 		// moveInSceneActionScript
 		const moveInSceneActionScript = new MoveInSceneActionScript(onAwakeScript);
 
-		// moveInSceneActionScript_1 (prefab fields)
-		moveInSceneActionScript_1.from = "TOP";
+		// tank
+		const tank = new Tank(this, 383, 128);
+		this.add.existing(tank);
+
+		// tank_1
+		const tank_1 = new Tank(this, 128, 128);
+		this.add.existing(tank_1);
+
+		// tank_2
+		const tank_2 = new Tank(this, 1152, 128);
+		this.add.existing(tank_2);
+
+		// tank_3
+		const tank_3 = new Tank(this, 896, 128);
+		this.add.existing(tank_3);
+
+		// tank_4
+		const tank_4 = new Tank(this, 638, 128);
+		this.add.existing(tank_4);
+
+		// tank_5
+		const tank_5 = new Tank(this, 382, 595);
+		this.add.existing(tank_5);
+
+		// tank_6
+		const tank_6 = new Tank(this, 637, 595);
+		this.add.existing(tank_6);
+
+		// tank_7
+		const tank_7 = new Tank(this, 895, 595);
+		this.add.existing(tank_7);
+
+		// tank_8
+		const tank_8 = new Tank(this, 1151, 595);
+		this.add.existing(tank_8);
+
+		// tank_9
+		const tank_9 = new Tank(this, 127, 595);
+		this.add.existing(tank_9);
 
 		// moveInSceneActionScript (prefab fields)
 		moveInSceneActionScript.from = "BOTTOM";

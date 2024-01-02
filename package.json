@@ -15,6 +15,7 @@
   "dependencies": {
     "@phasereditor2d/scripts-core": "^1.0.7",
     "@phasereditor2d/scripts-simple-animations": "^1.0.6",
+    "bitecs": "^0.3.40",
     "phaser": "^3.60.0"
   },
   "devDependencies": {

@@ -1,0 +1,64 @@
+{
+    "id": "00b9dd69-81d8-4613-8f1e-eabe75e261e0",
+    "sceneType": "PREFAB",
+    "settings": {
+        "exportClass": true,
+        "autoImport": true,
+        "preloadMethodName": "",
+        "preloadPackFiles": [],
+        "createMethodName": "",
+        "compilerOutputLanguage": "TYPE_SCRIPT",
+        "borderWidth": 1280,
+        "borderHeight": 720
+    },
+    "displayList": [
+        {
+            "type": "Container",
+            "id": "2c04c676-abef-4188-b340-9354e051e623",
+            "label": "container_1",
+            "list": [
+                {
+                    "type": "Sprite",
+                    "id": "04244d3b-d1e1-4d68-b650-a1d150ccc174",
+                    "label": "leftTrack",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Track1",
+                        "frame": "Track1_01.png"
+                    },
+                    "x": -80,
+                    "animationKey": "Track_1"
+                },
+                {
+                    "type": "Sprite",
+                    "id": "2a1e02bd-4a1f-4f26-8779-177e5f010086",
+                    "label": "rightTrack",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Track1",
+                        "frame": "Track1_01.png"
+                    },
+                    "x": 80,
+                    "animationKey": "Track_1"
+                },
+                {
+                    "type": "Image",
+                    "id": "eec2fc6a-bacc-42bb-9e8e-b3e9a9d70b9f",
+                    "label": "base",
+                    "scope": "CLASS",
+                    "texture": {
+                        "key": "Tank_Hulls_Blue",
+                        "frame": "Hull_01.png"
+                    }
+                }
+            ]
+        }
+    ],
+    "plainObjects": [],
+    "meta": {
+        "app": "Phaser Editor 2D - Scene Editor",
+        "url": "https://phasereditor2d.com",
+        "contentType": "phasereditor2d.core.scene.SceneContentType",
+        "version": 5
+    }
+}
