@@ -1,0 +1,66 @@
+{
+    "section1": {
+        "files": [
+            {
+                "atlasURL": "assets/tanks/weapons/barrel/Guns_Barrels.json",
+                "textureURL": "assets/tanks/weapons/barrel/Guns_Barrels.png",
+                "type": "atlas",
+                "key": "Guns_Barrels"
+            },
+            {
+                "atlasURL": "assets/tanks/weapons/full_guns/Guns_Blue.json",
+                "textureURL": "assets/tanks/weapons/full_guns/Guns_Blue.png",
+                "type": "atlas",
+                "key": "Guns_Blue"
+            },
+            {
+                "atlasURL": "assets/tanks/weapons/full_guns/Guns_Brown.json",
+                "textureURL": "assets/tanks/weapons/full_guns/Guns_Brown.png",
+                "type": "atlas",
+                "key": "Guns_Brown"
+            },
+            {
+                "url": "assets/preload-animations.json",
+                "type": "animation",
+                "key": "preload-animations"
+            },
+            {
+                "atlasURL": "assets/tanks/hulls/Tank_Hulls_Blue.json",
+                "textureURL": "assets/tanks/hulls/Tank_Hulls_Blue.png",
+                "type": "atlas",
+                "key": "Tank_Hulls_Blue"
+            },
+            {
+                "atlasURL": "assets/tanks/hulls/Tank_Hulls_Brown.json",
+                "textureURL": "assets/tanks/hulls/Tank_Hulls_Brown.png",
+                "type": "atlas",
+                "key": "Tank_Hulls_Brown"
+            },
+            {
+                "atlasURL": "assets/tanks/tracks/Track1.json",
+                "textureURL": "assets/tanks/tracks/Track1.png",
+                "type": "atlas",
+                "key": "Track1"
+            },
+            {
+                "atlasURL": "assets/tanks/weapons/turrets/Weapon_Turrets_Blue.json",
+                "textureURL": "assets/tanks/weapons/turrets/Weapon_Turrets_Blue.png",
+                "type": "atlas",
+                "key": "Weapon_Turrets_Blue"
+            },
+            {
+                "atlasURL": "assets/tanks/weapons/turrets/Weapon_Turrets_Brown.json",
+                "textureURL": "assets/tanks/weapons/turrets/Weapon_Turrets_Brown.png",
+                "type": "atlas",
+                "key": "Weapon_Turrets_Brown"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}

@@ -1,0 +1,556 @@
+{
+    "anims": [
+        {
+            "key": "Explosion",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_08.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Explosion",
+                    "frame": "Explosion_09.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 12,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "Fire_Shot_Solid",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Fire_Shot1",
+                    "frame": "Fire_Shot1_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shot1",
+                    "frame": "Fire_Shot1_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shot1",
+                    "frame": "Fire_Shot1_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shot1",
+                    "frame": "Fire_Shot1_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 8,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "Fire_Shot_Plasma",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Fire_Shot2",
+                    "frame": "Fire_Shot2_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shot2",
+                    "frame": "Fire_Shot2_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shot2",
+                    "frame": "Fire_Shot2_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shot2",
+                    "frame": "Fire_Shot2_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 8,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "Fire_Shot_Flame",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_08.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_09.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Fire_Shots_Flame",
+                    "frame": "Fire_Shots_Flame_10.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 10,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "Shots_Impact_Solid",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Shots_Impact1",
+                    "frame": "Shots_Impact1_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Shots_Impact1",
+                    "frame": "Shots_Impact1_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Shots_Impact1",
+                    "frame": "Shots_Impact1_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Shots_Impact1",
+                    "frame": "Shots_Impact1_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "Shots_Impact_Plasma",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Shots_Impact2",
+                    "frame": "Shots_Impact2_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Shots_Impact2",
+                    "frame": "Shots_Impact2_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Shots_Impact2",
+                    "frame": "Shots_Impact2_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Shots_Impact2",
+                    "frame": "Shots_Impact2_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "Sprite_Exhaust",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_08.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_09.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust",
+                    "frame": "Sprite_Exhaust_10.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        },
+        {
+            "key": "Sprite_Exhaust_Start",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_03.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_04.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_05.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_06.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_07.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_08.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_09.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Tank_Exhaust_Start",
+                    "frame": "Sprite_Exhaust_Start_10.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true
+        },
+        {
+            "key": "Track_2",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Track2",
+                    "frame": "Track2_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Track2",
+                    "frame": "Track2_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        },
+        {
+            "key": "Track_3",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Track3",
+                    "frame": "Track3_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Track3",
+                    "frame": "Track3_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        },
+        {
+            "key": "Track_4",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Track4",
+                    "frame": "Track4_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Track4",
+                    "frame": "Track4_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        },
+        {
+            "key": "Track_5",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Track5",
+                    "frame": "Track5_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Track5",
+                    "frame": "Track5_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        },
+        {
+            "key": "Track_6",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Track6",
+                    "frame": "Track6_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Track6",
+                    "frame": "Track6_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        },
+        {
+            "key": "Track_7",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Track7",
+                    "frame": "Track7_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Track7",
+                    "frame": "Track7_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        },
+        {
+            "key": "Track_8",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Track8",
+                    "frame": "Track8_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Track8",
+                    "frame": "Track8_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        }
+    ],
+    "globalTimeScale": 1,
+    "meta": {
+        "app": "Phaser Editor 2D v3",
+        "contentType": "Phaser v3 Animations"
+    },
+    "settings": {
+        "sourceLang": "JAVA_SCRIPT",
+        "esModule": false,
+        "generateCode": false
+    }
+}

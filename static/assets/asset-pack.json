@@ -1,0 +1,150 @@
+{
+    "section1": {
+        "files": [
+            {
+                "url": "assets/animations.json",
+                "type": "animation",
+                "key": "animations"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/Effects.json",
+                "textureURL": "assets/tanks/effects/Effects.png",
+                "type": "atlas",
+                "key": "Effects"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/animations/Explosion.json",
+                "textureURL": "assets/tanks/effects/animations/Explosion.png",
+                "type": "atlas",
+                "key": "Explosion"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/animations/Fire_Shot1.json",
+                "textureURL": "assets/tanks/effects/animations/Fire_Shot1.png",
+                "type": "atlas",
+                "key": "Fire_Shot1"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/animations/Fire_Shot2.json",
+                "textureURL": "assets/tanks/effects/animations/Fire_Shot2.png",
+                "type": "atlas",
+                "key": "Fire_Shot2"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/animations/Fire_Shots_Flame.json",
+                "textureURL": "assets/tanks/effects/animations/Fire_Shots_Flame.png",
+                "type": "atlas",
+                "key": "Fire_Shots_Flame"
+            },
+            {
+                "atlasURL": "assets/tanks/weapons/full_guns/Guns_Cyan.json",
+                "textureURL": "assets/tanks/weapons/full_guns/Guns_Cyan.png",
+                "type": "atlas",
+                "key": "Guns_Cyan"
+            },
+            {
+                "atlasURL": "assets/tanks/weapons/full_guns/Guns_Green.json",
+                "textureURL": "assets/tanks/weapons/full_guns/Guns_Green.png",
+                "type": "atlas",
+                "key": "Guns_Green"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/animations/Shots_Impact1.json",
+                "textureURL": "assets/tanks/effects/animations/Shots_Impact1.png",
+                "type": "atlas",
+                "key": "Shots_Impact1"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/animations/Shots_Impact2.json",
+                "textureURL": "assets/tanks/effects/animations/Shots_Impact2.png",
+                "type": "atlas",
+                "key": "Shots_Impact2"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/animations/Tank_Exhaust.json",
+                "textureURL": "assets/tanks/effects/animations/Tank_Exhaust.png",
+                "type": "atlas",
+                "key": "Tank_Exhaust"
+            },
+            {
+                "atlasURL": "assets/tanks/effects/animations/Tank_Exhaust_Start.json",
+                "textureURL": "assets/tanks/effects/animations/Tank_Exhaust_Start.png",
+                "type": "atlas",
+                "key": "Tank_Exhaust_Start"
+            },
+            {
+                "atlasURL": "assets/tanks/hulls/Tank_Hulls_Cyan.json",
+                "textureURL": "assets/tanks/hulls/Tank_Hulls_Cyan.png",
+                "type": "atlas",
+                "key": "Tank_Hulls_Cyan"
+            },
+            {
+                "atlasURL": "assets/tanks/hulls/Tank_Hulls_Green.json",
+                "textureURL": "assets/tanks/hulls/Tank_Hulls_Green.png",
+                "type": "atlas",
+                "key": "Tank_Hulls_Green"
+            },
+            {
+                "atlasURL": "assets/tanks/tracks/Track2.json",
+                "textureURL": "assets/tanks/tracks/Track2.png",
+                "type": "atlas",
+                "key": "Track2"
+            },
+            {
+                "atlasURL": "assets/tanks/tracks/Track3.json",
+                "textureURL": "assets/tanks/tracks/Track3.png",
+                "type": "atlas",
+                "key": "Track3"
+            },
+            {
+                "atlasURL": "assets/tanks/tracks/Track4.json",
+                "textureURL": "assets/tanks/tracks/Track4.png",
+                "type": "atlas",
+                "key": "Track4"
+            },
+            {
+                "atlasURL": "assets/tanks/tracks/Track5.json",
+                "textureURL": "assets/tanks/tracks/Track5.png",
+                "type": "atlas",
+                "key": "Track5"
+            },
+            {
+                "atlasURL": "assets/tanks/tracks/Track6.json",
+                "textureURL": "assets/tanks/tracks/Track6.png",
+                "type": "atlas",
+                "key": "Track6"
+            },
+            {
+                "atlasURL": "assets/tanks/tracks/Track7.json",
+                "textureURL": "assets/tanks/tracks/Track7.png",
+                "type": "atlas",
+                "key": "Track7"
+            },
+            {
+                "atlasURL": "assets/tanks/tracks/Track8.json",
+                "textureURL": "assets/tanks/tracks/Track8.png",
+                "type": "atlas",
+                "key": "Track8"
+            },
+            {
+                "atlasURL": "assets/tanks/weapons/turrets/Weapon_Turrets_Cyan.json",
+                "textureURL": "assets/tanks/weapons/turrets/Weapon_Turrets_Cyan.png",
+                "type": "atlas",
+                "key": "Weapon_Turrets_Cyan"
+            },
+            {
+                "atlasURL": "assets/tanks/weapons/turrets/Weapon_Turrets_Green.json",
+                "textureURL": "assets/tanks/weapons/turrets/Weapon_Turrets_Green.png",
+                "type": "atlas",
+                "key": "Weapon_Turrets_Green"
+            }
+        ]
+    },
+    "meta": {
+        "app": "Phaser Editor 2D - Asset Pack Editor",
+        "contentType": "phasereditor2d.pack.core.AssetContentType",
+        "url": "https://phasereditor2d.com",
+        "version": 2,
+        "showAllFilesInBlocks": false
+    }
+}

@@ -1,0 +1,57 @@
+{
+	"frames": [
+		{
+			"filename": "Track8_01.png",
+			"frame": {
+				"x": 0,
+				"y": 0,
+				"w": 42,
+				"h": 246
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 42,
+				"h": 246
+			},
+			"sourceSize": {
+				"w": 42,
+				"h": 246
+			}
+		},
+		{
+			"filename": "Track8_02.png",
+			"frame": {
+				"x": 42,
+				"y": 0,
+				"w": 42,
+				"h": 246
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 42,
+				"h": 246
+			},
+			"sourceSize": {
+				"w": 42,
+				"h": 246
+			}
+		}
+	],
+	"meta": {
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 84,
+			"h": 246
+		},
+		"scale": "1"
+	}
+}

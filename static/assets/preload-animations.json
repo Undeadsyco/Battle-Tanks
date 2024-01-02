@@ -1,0 +1,35 @@
+{
+    "anims": [
+        {
+            "key": "Track_1",
+            "type": "frame",
+            "frames": [
+                {
+                    "key": "Track1",
+                    "frame": "Track1_01.png",
+                    "duration": 0,
+                    "keyframe": false
+                },
+                {
+                    "key": "Track1",
+                    "frame": "Track1_02.png",
+                    "duration": 0,
+                    "keyframe": false
+                }
+            ],
+            "frameRate": 6,
+            "skipMissedFrames": true,
+            "repeat": -1
+        }
+    ],
+    "globalTimeScale": 1,
+    "meta": {
+        "app": "Phaser Editor 2D v3",
+        "contentType": "Phaser v3 Animations"
+    },
+    "settings": {
+        "sourceLang": "JAVA_SCRIPT",
+        "esModule": false,
+        "generateCode": false
+    }
+}
