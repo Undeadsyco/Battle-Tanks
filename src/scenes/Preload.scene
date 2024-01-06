@@ -14,24 +14,9 @@
     },
     "displayList": [
         {
-            "type": "Image",
-            "id": "e413cbbf-ce25-4dad-a117-b7cf0791f655",
-            "label": "guapen",
-            "components": [],
-            "texture": {
-                "key": "guapen"
-            },
-            "x": 505.0120544433594,
-            "y": 360,
-            "scaleX": 0.32715486817515643,
-            "scaleY": 0.32715486817515643,
-            "list": []
-        },
-        {
             "type": "Rectangle",
             "id": "845d4ca6-7417-44fc-97e3-a3bb2fbbdd03",
             "label": "progressBar",
-            "components": [],
             "x": 553.0120849609375,
             "y": 361,
             "originX": 0,
@@ -44,10 +29,7 @@
                 {
                     "prefabId": "ca949479-ab4d-45d5-b856-2cbecbd8d127",
                     "id": "250eaa8f-b143-4e41-9ddf-052dfd99672c",
-                    "label": "preloadUpdater",
-                    "components": [],
-                    "nestedPrefabs": [],
-                    "list": []
+                    "label": "preloadUpdater"
                 }
             ]
         },
@@ -55,7 +37,6 @@
             "type": "Rectangle",
             "id": "10e175a4-81b6-449e-9561-6d8ba54d3812",
             "label": "progressBarBg",
-            "components": [],
             "x": 553.0120849609375,
             "y": 361,
             "originX": 0,
@@ -63,21 +44,59 @@
             "fillColor": "#e0e0e0",
             "isStroked": true,
             "width": 256,
-            "height": 20,
-            "list": []
+            "height": 20
         },
         {
             "type": "Text",
             "id": "c4092661-6339-47cf-9fea-8abff3a46e0c",
             "label": "loadingText",
-            "components": [],
             "x": 552.0120849609375,
             "y": 329,
             "text": "Loading...",
             "fontFamily": "arial",
             "fontSize": "20px",
-            "color": "#e0e0e0",
-            "list": []
+            "color": "#e0e0e0"
+        },
+        {
+            "prefabId": "ef9c397d-71f4-46e8-b58a-e1eab75cd275",
+            "id": "2c031cff-434f-407d-9550-3f89c96914e2",
+            "unlock": [
+                "x",
+                "y",
+                "scaleX",
+                "scaleY",
+                "angle"
+            ],
+            "label": "blueTank",
+            "x": 506,
+            "y": 315,
+            "scaleX": 0.25,
+            "scaleY": 0.25,
+            "angle": 45
+        },
+        {
+            "prefabId": "ef9c397d-71f4-46e8-b58a-e1eab75cd275",
+            "id": "523d5720-f660-4f65-979b-d5b12476b7ea",
+            "unlock": [
+                "x",
+                "y",
+                "scaleX",
+                "scaleY",
+                "angle",
+                "color"
+            ],
+            "label": "brownTank",
+            "color": 1,
+            "x": 855,
+            "y": 428,
+            "scaleX": 0.25,
+            "scaleY": 0.25,
+            "angle": -135
+        },
+        {
+            "prefabId": "aca1edff-595a-478a-9cc0-71893fdc22c4",
+            "id": "2a9f4fdf-936a-4ac8-9fff-3e43a96982c6",
+            "label": "gameObjectFactoryScript"
         }
     ],
     "plainObjects": [],
@@ -85,6 +104,6 @@
         "app": "Phaser Editor 2D - Scene Editor",
         "url": "https://phasereditor2d.com",
         "contentType": "phasereditor2d.core.scene.SceneContentType",
-        "version": 3
+        "version": 5
     }
 }

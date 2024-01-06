@@ -5,6 +5,8 @@
 
 import Phaser from "phaser";
 import PreloadBarUpdaterScript from "../script-nodes/PreloadBarUpdaterScript";
+import Tank from "../prefabs/tanks/Tank";
+import GameObjectFactoryScript from "../script-nodes/GameObjectFactoryScript";
 /* START-USER-IMPORTS */
 import assetPackUrl from "../../static/assets/asset-pack.json";
 /* END-USER-IMPORTS */
@@ -20,11 +22,6 @@ export default class Preload extends Phaser.Scene {
 	}
 
 	editorCreate(): void {
-
-		// guapen
-		const guapen = this.add.image(505.0120544433594, 360, "guapen");
-		guapen.scaleX = 0.32715486817515643;
-		guapen.scaleY = 0.32715486817515643;
 
 		// progressBar
 		const progressBar = this.add.rectangle(553.0120849609375, 361, 256, 20);
@@ -45,6 +42,26 @@ export default class Preload extends Phaser.Scene {
 		const loadingText = this.add.text(552.0120849609375, 329, "", {});
 		loadingText.text = "Loading...";
 		loadingText.setStyle({ "color": "#e0e0e0", "fontFamily": "arial", "fontSize": "20px" });
+
+		// blueTank
+		const blueTank = new Tank(this, 506, 315);
+		this.add.existing(blueTank);
+		blueTank.scaleX = 0.25;
+		blueTank.scaleY = 0.25;
+		blueTank.angle = 45;
+
+		// brownTank
+		const brownTank = new Tank(this, 855, 428);
+		this.add.existing(brownTank);
+		brownTank.scaleX = 0.25;
+		brownTank.scaleY = 0.25;
+		brownTank.angle = -135;
+
+		// gameObjectFactoryScript
+		new GameObjectFactoryScript(this);
+
+		// brownTank (prefab fields)
+		brownTank.color = 1;
 
 		this.events.emit("scene-awake");
 	}
