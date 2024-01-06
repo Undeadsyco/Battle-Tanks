@@ -28,7 +28,6 @@ export default class GameObjectFactoryScript extends ScriptNode {
 		Phaser.GameObjects.GameObjectFactory.register("tank", function (this: Phaser.GameObjects.GameObjectFactory, config: tankConfig) {
 			const { id, x, y, color, hullType, trackType, turretType, barrelType } = config;
 			const tank = new Tank(this.scene, x, y).init({ id, color, hullType, trackType, turretType, barrelType });
-			this.updateList.add(tank);
 			this.displayList.add(tank);
 			return tank;
 		});
