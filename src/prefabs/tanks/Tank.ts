@@ -4,8 +4,26 @@ import type { hullChildren } from './components/Hull';
 import type { turretChildren } from './components/Turret';
 
 export type tankChildren = {
-	hull: Hull|hullChildren;
-	turret: Turret|turretChildren;
+	hull: Hull | hullChildren;
+	turret: Turret | turretChildren;
+}
+
+export interface ITank {
+	get id(): number;
+	set id(val: number);
+	get color(): colorOptions;
+	set color(val: colorOptions);
+	get hullType(): tankOptions;
+	set hullType(val: tankOptions);
+	get turretType(): tankOptions;
+	set turretType(val: tankOptions);
+	get barrelType(): tankOptions;
+	set barrelType(val: tankOptions);
+	get trackType(): trackOptions;
+	set trackType(val: trackOptions);
+	get children(): tankChildren
+	init(config: tankConfig): this;
+	expandChildren(): tankChildren;
 }
 
 /* START OF COMPILED CODE */
@@ -13,9 +31,9 @@ export type tankChildren = {
 import Phaser from "phaser";
 import Hull from "./components/Hull";
 import Turret from "./components/Turret";
-import TankTextureManagerScript from "../../script-nodes/managers/TankTextureManagerScript";
+import TankTextureManagerScript from "../../script-nodes/managers/gameobject-scripts/TankTextureManagerScript";
 /* START-USER-IMPORTS */
-import { colorOptions, tankOptions, trackRange } from '../../../types';
+import { colorOptions, tankConfig, tankOptions, trackOptions } from '../../../types';
 /* END-USER-IMPORTS */
 
 export default class Tank extends Phaser.GameObjects.Container {
@@ -28,7 +46,7 @@ export default class Tank extends Phaser.GameObjects.Container {
 		this.add(hull);
 
 		// turret
-		const turret = new Turret(scene, -2, 49);
+		const turret = new Turret(scene, 0, 48);
 		this.add(turret);
 
 		// textureManager
@@ -58,31 +76,61 @@ export default class Tank extends Phaser.GameObjects.Container {
 
 	// Write your code here.
 
+	private _id!: number;
+	get id(): number { return this._id; }
+	set id(val: number) { this._id = val; }
+
 	private _color!: colorOptions;
 	get color(): colorOptions { return this._color; }
-	set color(val: colorOptions) { this._color = val; }
+	set color(val: colorOptions) {
+		this._color = val;
+		this.textureManager.setTexture();
+	}
 
 	private _hullType!: tankOptions;
 	get hullType(): tankOptions { return this._hullType; }
-	set hullType(val: tankOptions) { this._hullType = val; }
+	set hullType(val: tankOptions) {
+		this._hullType = val;
+		this.textureManager.setTexture();
+	}
 
 	private _turretType!: tankOptions;
 	get turretType(): tankOptions { return this._turretType; }
-	set turretType(val: tankOptions) { this._turretType = val; }
+	set turretType(val: tankOptions) {
+		this._turretType = val;
+		this.textureManager.setTexture();
+	}
 
 	private _barrelType!: tankOptions;
 	get barrelType(): tankOptions { return this._barrelType; }
-	set barrelType(val: tankOptions) { this._barrelType = val; }
+	set barrelType(val: tankOptions) {
+		this._barrelType = val;
+		this.textureManager.setTexture();
+	}
 
-	private _trackType!: trackRange;
-	get trackType(): trackRange { return this._trackType; }
-	set trackType(val: trackRange) { this._trackType = val; }
+	private _trackType!: trackOptions;
+	get trackType(): trackOptions { return this._trackType; }
+	set trackType(val: trackOptions) {
+		this._trackType = val;
+		this.textureManager.setTexture();
+	}
 
 	get children(): tankChildren {
 		return ({
 			hull: this.hull,
 			turret: this.turret,
 		});
+	}
+
+	init(config: tankConfig): this {
+		const { id, color, hullType, trackType, turretType, barrelType } = config;
+		this._id = id;
+		this._color = color;
+		this._hullType = hullType;
+		this._trackType = trackType;
+		this._turretType = turretType;
+		this._barrelType = barrelType;
+		return this;
 	}
 
 	expandChildren(): tankChildren {

@@ -9,14 +9,14 @@ const turretPos = new Map<tankOptions, number>([
 
 /* START OF COMPILED CODE */
 
-import ScriptNode from "../../script-nodes-basic/ScriptNode";
+import ScriptNode from "../../../script-nodes-basic/ScriptNode";
 import Phaser from "phaser";
 /* START-USER-IMPORTS */
-import Tank from "../../prefabs/tanks/Tank";
-import { colorOptions, tankColors, tankOptions, trackRange, vector } from "../../../types";
-import { tankKeys } from "../../../types/keys/tanks";
-import Hull from "../../prefabs/tanks/components/Hull";
-import Turret from "~/prefabs/tanks/components/Turret";
+import Tank from "../../../prefabs/tanks/Tank";
+import { colorOptions, tankColors, tankOptions, trackOptions, vector } from "../../../../types";
+import { tankKeys } from "../../../../types/keys/tanks";
+import Hull from "../../../prefabs/tanks/components/Hull";
+import Turret from "../../../prefabs/tanks/components/Turret";
 /* END-USER-IMPORTS */
 
 export default class TankTextureManagerScript extends ScriptNode {
@@ -42,13 +42,11 @@ export default class TankTextureManagerScript extends ScriptNode {
 	}
 
 	protected override start(): void {
-		const { hull, turret } = this.gameObject.children;
+		this.setTexture();
+	}
 
-		this.gameObject.color = Phaser.Math.Between(0, 3) as colorOptions;
-		this.gameObject.hullType = Phaser.Math.Between(1, 16) as tankOptions;
-		this.gameObject.turretType = Phaser.Math.Between(1, 16) as tankOptions;
-		this.gameObject.barrelType = Phaser.Math.Between(1, 16) as tankOptions;
-		this.gameObject.trackType = Phaser.Math.Between(1, 8) as trackRange;
+	setTexture() {
+		const { hull, turret } = this.gameObject.children;
 
 		this.setHull(hull as Hull, turret as Turret);
 		this.setTurret((turret as Turret));

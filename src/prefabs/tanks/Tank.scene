@@ -38,8 +38,8 @@
                     ],
                     "label": "turret",
                     "scope": "CLASS",
-                    "x": -2,
-                    "y": 49
+                    "x": 0,
+                    "y": 48
                 },
                 {
                     "prefabId": "01405b49-8076-46f2-bf2b-c45fbb717039",
@@ -62,7 +62,7 @@
             "name": "color",
             "label": "Color",
             "tooltip": "",
-            "defValue": 1,
+            "defValue": 0,
             "customDefinition": true,
             "type": {
                 "id": "number"
