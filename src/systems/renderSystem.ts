@@ -18,7 +18,7 @@ export default (scene: Level) => {
       y: Position.y[entity],
       angle: Angle.current[entity],
       color: Tank.color[entity] as colorOptions,
-      hullType: Tank.color[entity] as tankOptions,
+      hullType: Tank.hullType[entity] as tankOptions,
       turretType: Tank.turretType[entity] as tankOptions,
       barrelType: Tank.barrelType[entity] as tankOptions,
       trackType: Tank.trackType[entity] as trackOptions,
