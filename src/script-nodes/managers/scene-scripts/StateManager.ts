@@ -80,7 +80,7 @@ export default class StateManager extends ScriptNode {
 
 	protected override start(): void {
 		const { physics: { world: { bounds: { width, height } } } } = this.scene;
-		for (let i = 0; i < 30; i++) {
+		for (let i = 0; i < 1; i++) {
 			addComponent(this.scene.getWorld(), updateComponents.Velocity, this.createTankState({
 				x: Phaser.Math.Between(width * 0.1, width * 0.9),
 				y: Phaser.Math.Between(height * 0.1, height * 0.9),

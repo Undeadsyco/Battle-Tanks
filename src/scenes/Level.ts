@@ -59,7 +59,7 @@ export default class Level extends Phaser.Scene {
 	private state: levelState = {
 		world: createWorld(),
 		systems: new Map([
-			[systemKeys.render, renderSystem<Level>(this)], [systemKeys.movement, movementSystem<Level>(this)],
+			[systemKeys.render, renderSystem(this)], [systemKeys.movement, movementSystem(this)],
 		]),
 		entities: new Map(),
 	}
