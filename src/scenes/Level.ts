@@ -74,7 +74,11 @@ export default class Level extends Phaser.Scene {
 
 		this.initEvents();
 
-		this.cameras.main.setZoom(1 / this.scale.zoom);
+		const { cameras: { main }, scale: { width, height, zoom }, physics: { world } } = this;
+
+		main.setZoom(1 / zoom);
+		main.setBounds(0, 0, width * zoom, height * zoom);
+		world.setBounds(0, 0, width * zoom, height * zoom);
 	}
 
 	update(time: number, delta: number): void {

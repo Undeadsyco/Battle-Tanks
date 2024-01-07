@@ -5,8 +5,6 @@ const vector = {
   y: Types.f32
 }
 
-const angle = Types.i16;
-
 export const entityComponents = {
   Tank: defineComponent({
     color: Types.ui8,
@@ -20,10 +18,10 @@ export const entityComponents = {
 
 export const stateComponents = {
   Position: defineComponent(vector),
-  Angle: defineComponent({ angle }),
+  Angle: defineComponent({ current: Types.i16, target: Types.i16 }),
 } as const;
 
 export const updateComponents = {
   Velocity: defineComponent(vector),
-  Rotation: defineComponent({ angle }),
+  Rotation: defineComponent({ speed: Types.i16 }),
 } as const;
