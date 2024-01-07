@@ -1,11 +1,11 @@
 import { Types, defineComponent } from "bitecs";
 
 const vector = {
-  x: Types.ui16,
-  y: Types.ui16
+  x: Types.f32,
+  y: Types.f32
 }
 
-const angle = Types.i8;
+const angle = Types.i16;
 
 export const entityComponents = {
   Tank: defineComponent({

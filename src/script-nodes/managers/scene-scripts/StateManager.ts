@@ -12,7 +12,7 @@ import Phaser from "phaser";
 import LevelManager from "./LevelManager";
 import Level from "../../../scenes/Level";
 import { addComponent, addEntity, Component, ComponentType, ISchema } from "bitecs";
-import { entityComponents, stateComponents } from "../../../components";
+import { entityComponents, stateComponents, updateComponents } from "../../../components";
 import { EventCenter } from "../../../utils";
 import { componentList, optionalTankConfig, tankComponentList } from "../../../../types";
 /* END-USER-IMPORTS */
@@ -51,8 +51,8 @@ export default class StateManager extends ScriptNode {
 		return entity;
 	}
 
-	private createTankState(config: optionalTankConfig) {
-		const entity = this.addComponents<tankComponentList>(this.addEntity(), [
+	private createTankState(config: optionalTankConfig): number {
+		return this.addComponents<tankComponentList>(this.addEntity(), [
 			{
 				component: entityComponents.Tank,
 				values: {
@@ -70,12 +70,13 @@ export default class StateManager extends ScriptNode {
 			{
 				component: stateComponents.Angle,
 				values: { angle: config.angle ?? 0 }
-			}
+			},
 		]);
 	}
 
 	protected override start(): void {
-		this.createTankState({ x: 200, y: 200, color: 2, hullType: 1, turretType: 1, barrelType: 1, trackType: 1, angle: 90 });
+		const entity = this.createTankState({ x: 200, y: 200, color: 2, hullType: 1, turretType: 1, barrelType: 1, trackType: 1, angle: 180 });
+		addComponent(this.scene.getWorld(), updateComponents.Velocity, entity);
 	}
 
 	initEvents() {

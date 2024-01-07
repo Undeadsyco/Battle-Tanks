@@ -130,7 +130,6 @@ export default class Tank extends Phaser.GameObjects.Container {
 		this._trackType = trackType;
 		this._turretType = turretType;
 		this._barrelType = barrelType;
-		this.setAngle(angle);
 		return this;
 	}
 
