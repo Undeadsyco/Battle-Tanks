@@ -9,10 +9,10 @@ type systemKeys = keyof typeof systemKeys;
 type levelState = {
 	world: IWorld;
 	systems: Map<systemKeys, System>;
-	entities: Phaser.GameObjects.GameObject[];
+	entities: Map<number, Tank>;
 }
 
-const levelEventKeys = {
+export const levelEventKeys = {
 	ADD_ENTITY_TO_SCENE: "add-entity-to-scene",
 }
 
@@ -23,7 +23,8 @@ import LevelManager from "../script-nodes/managers/scene-scripts/LevelManager";
 /* START-USER-IMPORTS */
 import { IWorld, System, createWorld } from "bitecs";
 import { EventCenter } from "../utils";
-import { renderSystem } from "../systems";
+import { movementSystem, renderSystem } from "../systems";
+import Tank from "../prefabs/tanks/Tank";
 /* END-USER-IMPORTS */
 
 export default class Level extends Phaser.Scene {
@@ -58,14 +59,15 @@ export default class Level extends Phaser.Scene {
 	private state: levelState = {
 		world: createWorld(),
 		systems: new Map([
-			["render", renderSystem(this)]
+			[systemKeys.render, renderSystem<Level>(this)], [systemKeys.movement, movementSystem<Level>(this)],
 		]),
-		entities: [],
+		entities: new Map(),
 	}
 
-	getWorld() { return this.state.world }
-	getSystems() { return this.state.systems }
-	getEntities() { return this.state.entities }
+	getWorld(): IWorld { return this.state.world }
+	getSystems(): Map<systemKeys, System> { return this.state.systems }
+	getEntities(): Map<number, Tank> { return this.state.entities }
+	getEntity(key: number): Tank | undefined { return this.state.entities.get(key); }
 
 	create() {
 		this.editorCreate();
@@ -78,10 +80,11 @@ export default class Level extends Phaser.Scene {
 	update(time: number, delta: number): void {
 		const { systems } = this.state;
 		systems.get(systemKeys.render)?.(this.state.world);
+		systems.get(systemKeys.movement)?.(this.state.world);
 	}
 
-	private addEntity(entity: Phaser.GameObjects.GameObject) {
-		this.state.entities.push(entity);
+	private addEntity({ key, entity }: { key: number, entity: Tank }) {
+		this.state.entities.set(key, entity);
 	}
 
 	private initEvents() {

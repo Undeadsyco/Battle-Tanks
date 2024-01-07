@@ -10,7 +10,7 @@ import ScriptNode from "../../../script-nodes-basic/ScriptNode";
 import Phaser from "phaser";
 /* START-USER-IMPORTS */
 import LevelManager from "./LevelManager";
-import Level from "../../../scenes/Level";
+import Level, { levelEventKeys } from "../../../scenes/Level";
 import { tankConfig } from "../../../../types";
 import { EventCenter } from "../../../utils";
 /* END-USER-IMPORTS */
@@ -33,7 +33,7 @@ export default class EntityManager extends ScriptNode {
 	override get parent() { return super.parent as LevelManager }
 
 	private createTankEntity(config: tankConfig) {
-		this.scene.add.tank(config)
+		EventCenter.emitter.emit(`${this.scene.scene.key}-${levelEventKeys.ADD_ENTITY_TO_SCENE}`, { key: config.id, entity: this.scene.add.tank(config) });
 	}
 
 	initEvents() {
