@@ -1,7 +1,11 @@
 
 // You can write more code here
 
-type systemKeys = ("render" | "movement")
+const systemKeys = {
+	render: "render",
+	movement: "movement",
+} as const;
+type systemKeys = keyof typeof systemKeys;
 type levelState = {
 	world: IWorld;
 	systems: Map<systemKeys, System>;
@@ -15,11 +19,11 @@ const levelEventKeys = {
 /* START OF COMPILED CODE */
 
 import Phaser from "phaser";
-import Tank from "../prefabs/tanks/Tank";
 import LevelManager from "../script-nodes/managers/scene-scripts/LevelManager";
 /* START-USER-IMPORTS */
 import { IWorld, System, createWorld } from "bitecs";
 import { EventCenter } from "../utils";
+import { renderSystem } from "../systems";
 /* END-USER-IMPORTS */
 
 export default class Level extends Phaser.Scene {
@@ -37,10 +41,6 @@ export default class Level extends Phaser.Scene {
 
 	editorCreate(): void {
 
-		// tank
-		const tank = new Tank(this, 1019, 140);
-		this.add.existing(tank);
-
 		// levelManager
 		const levelManager = new LevelManager(this);
 
@@ -57,7 +57,9 @@ export default class Level extends Phaser.Scene {
 
 	private state: levelState = {
 		world: createWorld(),
-		systems: new Map(),
+		systems: new Map([
+			["render", renderSystem(this)]
+		]),
 		entities: [],
 	}
 
@@ -67,10 +69,15 @@ export default class Level extends Phaser.Scene {
 
 	create() {
 		this.editorCreate();
-		
+
 		this.initEvents();
-		
+
 		this.cameras.main.setZoom(1 / this.scale.zoom);
+	}
+
+	update(time: number, delta: number): void {
+		const { systems } = this.state;
+		systems.get(systemKeys.render)?.(this.state.world);
 	}
 
 	private addEntity(entity: Phaser.GameObjects.GameObject) {

@@ -123,13 +123,14 @@ export default class Tank extends Phaser.GameObjects.Container {
 	}
 
 	init(config: tankConfig): this {
-		const { id, color, hullType, trackType, turretType, barrelType } = config;
+		const { id, angle, color, hullType, trackType, turretType, barrelType } = config;
 		this._id = id;
 		this._color = color;
 		this._hullType = hullType;
 		this._trackType = trackType;
 		this._turretType = turretType;
 		this._barrelType = barrelType;
+		this.setAngle(angle);
 		return this;
 	}
 

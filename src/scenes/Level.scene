@@ -15,17 +15,6 @@
     },
     "displayList": [
         {
-            "prefabId": "ef9c397d-71f4-46e8-b58a-e1eab75cd275",
-            "id": "1587ace9-e0b3-4a8d-8c4a-62bce5d8bbb8",
-            "unlock": [
-                "x",
-                "y"
-            ],
-            "label": "tank",
-            "x": 1019,
-            "y": 140
-        },
-        {
             "prefabId": "acee6fec-5e53-4ac4-aef2-3a62230b9c76",
             "id": "0eea2986-1c83-46e3-941c-6684686cba6e",
             "label": "levelManager",

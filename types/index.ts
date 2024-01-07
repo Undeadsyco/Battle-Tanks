@@ -6,6 +6,8 @@ type Enumerate<N extends number, Acc extends number[] = []> = Acc['length'] exte
 
 type Range<F extends number, T extends number> = Exclude<Enumerate<T>, Enumerate<F>>
 
+type optional<T> = { [K in keyof T]?: T[K] } 
+
 export type tankOptions = Range<0, 17>;
 export type trackOptions = Range<0, 9>
 export type colorOptions = Range<0, 4>
@@ -25,12 +27,15 @@ export type tankConfig = {
   id: number,
   x?: number,
   y?: number,
+  angle?: number,
   color: colorOptions,
   hullType: tankOptions,
   trackType: trackOptions,
   barrelType: tankOptions,
   turretType: tankOptions,
 }
+
+export type optionalTankConfig = optional<tankConfig>
 
 export type tankScema = {
   color: Type,

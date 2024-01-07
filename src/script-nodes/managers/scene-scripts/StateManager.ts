@@ -11,11 +11,10 @@ import Phaser from "phaser";
 /* START-USER-IMPORTS */
 import LevelManager from "./LevelManager";
 import Level from "../../../scenes/Level";
-import { addComponent, addEntity, Component } from "bitecs";
+import { addComponent, addEntity, Component, ComponentType, ISchema } from "bitecs";
 import { entityComponents, stateComponents } from "../../../components";
 import { EventCenter } from "../../../utils";
-import { entityEventKeys } from "./EntityManager";
-import { colorOptions, componentConfig, componentList, tankComponentList, tankConfig, tankOptions, trackOptions } from "../../../../types";
+import { componentList, optionalTankConfig, tankComponentList } from "../../../../types";
 /* END-USER-IMPORTS */
 
 export default class StateManager extends ScriptNode {
@@ -43,7 +42,7 @@ export default class StateManager extends ScriptNode {
 	private addComponents<list extends componentList>(entity: number, componentList: list) {
 		const world = this.scene.getWorld();
 		for (let i = 0; i < componentList.length; i++) {
-			const component = componentList[i].component, values = componentList[i].values
+			const { component, values } = componentList[i];
 			addComponent(world, component, entity);
 			Object.keys(componentList[i].values).forEach((key: string) => {
 				(component[key] as Array<number>)[entity] = values[key];
@@ -52,37 +51,31 @@ export default class StateManager extends ScriptNode {
 		return entity;
 	}
 
-	private createTankState() {
+	private createTankState(config: optionalTankConfig) {
 		const entity = this.addComponents<tankComponentList>(this.addEntity(), [
 			{
 				component: entityComponents.Tank,
 				values: {
-					color: Phaser.Math.Between(0, 3), 
-					hullType: Phaser.Math.Between(1, 16),
-					trackType: Phaser.Math.Between(1, 8),
-					turretType: Phaser.Math.Between(1, 16),
-					barrelType: Phaser.Math.Between(1, 16),
+					color: config.color ?? Phaser.Math.Between(0, 3),
+					hullType: config.hullType ?? Phaser.Math.Between(1, 16),
+					trackType: config.trackType ?? Phaser.Math.Between(1, 8),
+					turretType: config.turretType ?? Phaser.Math.Between(1, 16),
+					barrelType: config.barrelType ?? Phaser.Math.Between(1, 16),
 				}
 			},
 			{
 				component: stateComponents.Position,
-				values: { x: 100, y: 100 }
+				values: { x: config.x ?? 100, y: config.y ?? 100 }
 			},
 			{
 				component: stateComponents.Angle,
-				values: { angle: 0 }
+				values: { angle: config.angle ?? 0 }
 			}
 		]);
-		EventCenter.emitter.emit(`${this.scene.scene.key}-${entityEventKeys.CREATE_TANK_ENTITY}`, ({
-			id: entity,
-			x: stateComponents.Position.x[entity],
-			y: stateComponents.Position.y[entity],
-			color: entityComponents.Tank.color[entity] as colorOptions,
-			hullType: entityComponents.Tank.color[entity] as tankOptions,
-			turretType: entityComponents.Tank.turretType[entity] as tankOptions,
-			barrelType: entityComponents.Tank.barrelType[entity] as tankOptions,
-			trackType: entityComponents.Tank.trackType[entity] as trackOptions,
-		}));
+	}
+
+	protected override start(): void {
+		this.createTankState({ x: 200, y: 200, color: 2, hullType: 1, turretType: 1, barrelType: 1, trackType: 1, angle: 90 });
 	}
 
 	initEvents() {
