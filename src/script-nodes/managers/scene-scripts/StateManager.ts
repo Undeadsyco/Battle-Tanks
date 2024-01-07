@@ -1,6 +1,7 @@
 
 // You can write more code here
 export const stateEventKeys = {
+	ADD_COMPONENT: "add-component",
 	CREATE_TANK_STATE: "create-tank-state",
 }
 
@@ -14,7 +15,7 @@ import Level from "../../../scenes/Level";
 import { addComponent, addEntity, Component, ComponentType, ISchema } from "bitecs";
 import { entityComponents, stateComponents, updateComponents } from "../../../components";
 import { EventCenter } from "../../../utils";
-import { componentList, optionalTankConfig, tankComponentList } from "../../../../types";
+import { colorOptions, componentList, optionalTankConfig, tankComponentList, tankOptions, trackOptions } from "../../../../types";
 /* END-USER-IMPORTS */
 
 export default class StateManager extends ScriptNode {
@@ -39,52 +40,68 @@ export default class StateManager extends ScriptNode {
 		return addEntity(world);
 	}
 
-	private addComponents<list extends componentList>(entity: number, componentList: list) {
+	private addComponents<list extends componentList>({ entity, list }: { entity: number, list: list }) {
 		const world = this.scene.getWorld();
-		for (let i = 0; i < componentList.length; i++) {
-			const { component, values } = componentList[i];
+		for (let i = 0; i < list.length; i++) {
+			const { component, values } = list[i];
 			addComponent(world, component, entity);
-			Object.keys(componentList[i].values).forEach((key: string) => {
+			if (values) Object.keys(values).forEach((key: string) => {
 				(component[key] as Array<number>)[entity] = values[key];
-			})
+			});
 		}
 		return entity;
 	}
 
 	private createTankState(config: optionalTankConfig): number {
-		return this.addComponents<tankComponentList>(this.addEntity(), [
-			{
-				component: entityComponents.Tank,
-				values: {
-					color: config.color ?? Phaser.Math.Between(0, 3),
-					hullType: config.hullType ?? Phaser.Math.Between(1, 16),
-					trackType: config.trackType ?? Phaser.Math.Between(1, 8),
-					turretType: config.turretType ?? Phaser.Math.Between(1, 16),
-					barrelType: config.barrelType ?? Phaser.Math.Between(1, 16),
-				}
-			},
-			{
-				component: stateComponents.Position,
-				values: { x: config.x ?? 100, y: config.y ?? 100 }
-			},
-			{
-				component: stateComponents.Angle,
-				values: { angle: config.angle ?? 0 }
-			},
-		]);
+		return this.addComponents<tankComponentList>({
+			entity: this.addEntity(),
+			list: [
+				{
+					component: entityComponents.Tank,
+					values: {
+						color: config.color ?? Phaser.Math.Between(0, 3),
+						hullType: config.hullType ?? Phaser.Math.Between(1, 16),
+						trackType: config.trackType ?? Phaser.Math.Between(1, 8),
+						turretType: config.turretType ?? Phaser.Math.Between(1, 16),
+						barrelType: config.barrelType ?? Phaser.Math.Between(1, 16),
+					}
+				},
+				{
+					component: stateComponents.Position,
+					values: { x: config.x ?? 100, y: config.y ?? 100 }
+				},
+				{
+					component: stateComponents.Angle,
+					values: { current: config.angle ?? 0, target: config.angle ?? 0 }
+				},
+			]
+		});
 	}
 
 	protected override start(): void {
-		const entity = this.createTankState({ x: 200, y: 200, color: 2, hullType: 1, turretType: 1, barrelType: 1, trackType: 1, angle: 180 });
-		addComponent(this.scene.getWorld(), updateComponents.Velocity, entity);
+		const { physics: { world: { bounds: { width, height } } } } = this.scene;
+		for (let i = 0; i < 1; i++) {
+			addComponent(this.scene.getWorld(), updateComponents.Velocity, this.createTankState({
+				x: Phaser.Math.Between(width * 0.1, width * 0.9),
+				y: Phaser.Math.Between(height * 0.1, height * 0.9),
+				color: Phaser.Math.Between(0, 3) as colorOptions,
+				hullType: Phaser.Math.Between(1, 16) as tankOptions,
+				turretType: Phaser.Math.Between(1, 16) as tankOptions,
+				barrelType: Phaser.Math.Between(1, 16) as tankOptions,
+				trackType: Phaser.Math.Between(1, 8) as trackOptions,
+				angle: Phaser.Math.Between(-45, 45) * 2,
+			}));
+		}
 	}
 
 	initEvents() {
 		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.CREATE_TANK_STATE}`, this.createTankState, this);
+		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.ADD_COMPONENT}`, this.addComponents, this);
 	}
 
 	shutdown() {
 		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.CREATE_TANK_STATE}`, this.createTankState, this);
+		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.ADD_COMPONENT}`, this.addComponents, this);
 	}
 
 	/* END-USER-CODE */

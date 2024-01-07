@@ -51,12 +51,13 @@ export type vectorScema = {
 }
 
 export type angleScema = {
-  angle: Type,
+  current: Type,
+  target: Type,
 }
 
 export type componentConfig<scema extends ISchema = ISchema> = {
   component: ComponentType<scema>;
-  values: { [key: string]: number }
+  values?: { [key: string]: number }
 }
 
 export type componentList = componentConfig[];

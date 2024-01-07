@@ -8,8 +8,6 @@
         "createMethodName": "editorCreate",
         "sceneKey": "Level",
         "compilerOutputLanguage": "TYPE_SCRIPT",
-        "borderX": -1920,
-        "borderY": -1080,
         "borderWidth": 5120,
         "borderHeight": 2880
     },
