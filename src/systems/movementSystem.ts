@@ -8,6 +8,7 @@ export default (scene: Level) => {
   const { Tank } = entityComponents, { Position, Angle } = stateComponents, { Velocity, Rotation } = updateComponents;
   const rotatingQueries = QueryCenter.createQueries([Tank, Angle, Rotation], true);
   const movingQueries = QueryCenter.createQueries([Tank, Position, Angle, Velocity], false, true);
+  
   const checkPosition = (entity: number) => {
     const maxBorder = 0.9, minBorder = 0.1;
     return ({
@@ -17,12 +18,11 @@ export default (scene: Level) => {
       right: Position.x[entity] >= scene.physics.world.bounds.width * maxBorder && (Angle.current[entity] > 0 && Angle.current[entity] < 180),
     });
   }
-
   const checkHeading = (entity: number) => {
     return ({
       topRight: Angle.current[entity] >= 0 && Angle.current[entity] < 90,
       topLeft: Angle.current[entity] >= -90 && Angle.current[entity] < 0,
-      bottomRight: Angle.current[entity] >= 90 && Angle.current[entity] < 180,
+      bottomRight: Angle.current[entity] >= 90 && Angle.current[entity] <= 180,
       bottomLeft: Angle.current[entity] <= -90 && Angle.current[entity] > -180
     })
   }
@@ -50,7 +50,9 @@ export default (scene: Level) => {
       if (heading > 180 || heading < -180) {
         if (heading > 180) heading = (heading - 360);
         if (heading < -180) heading = (heading + 360);
+        // Rotation.speed[entity] = -Rotation.speed[entity];
       }
+      
       Angle.current[entity] = heading;
     } else {
       Rotation.speed[entity] = 0;
@@ -67,8 +69,8 @@ export default (scene: Level) => {
     const { top, bottom, left, right } = checkPosition(entity);
     const { topLeft, topRight, bottomLeft, bottomRight } = checkHeading(entity);
     if (top || bottom || right || left && !hasComponent(scene.getWorld(), Rotation, entity)) {
-      const turnLeft = ((top && topLeft) || (bottom && bottomLeft) || (left && bottomLeft) || (right && topLeft))
-      const turnRight = ((top && topRight) || (bottom && bottomRight) || (left && topRight) || (right && bottomRight))
+      const turnLeft = ((top && topLeft) || (bottom && bottomRight) || (left && bottomLeft) || (right && topRight))
+      const turnRight = ((top && topRight) || (bottom && bottomLeft) || (left && topLeft) || (right && bottomRight))
       let speed: number = 0;
 
       if (turnLeft) speed = -2;
