@@ -23,7 +23,7 @@ export default (scene: Level) => {
       topRight: Angle.current[entity] >= 0 && Angle.current[entity] < 90,
       topLeft: Angle.current[entity] >= -90 && Angle.current[entity] < 0,
       bottomRight: Angle.current[entity] >= 90 && Angle.current[entity] <= 180,
-      bottomLeft: Angle.current[entity] <= -90 && Angle.current[entity] > -180
+      bottomLeft: Angle.current[entity] <= -90 && Angle.current[entity] >= -180
     })
   }
 
