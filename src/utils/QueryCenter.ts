@@ -18,7 +18,7 @@ export default class QueryCenter {
     });
   }
 
-  static runQueries(world: IWorld, queries: queries, enterCallback?: (entity: number) => void, updateCallback?: (entity: number) => void, exitCallback?: (entity: number) => void) {
+  static runQueries(world: IWorld, queries: queries, updateCallback?: (entity: number) => void, enterCallback?: (entity: number) => void, exitCallback?: (entity: number) => void) {
     const existingEntitites = queries.existing(world);
     const enteringEntities = queries.entering ? queries.entering(world) : undefined;
     const exitingEntities = queries.exiting ? queries.exiting(world) : undefined;

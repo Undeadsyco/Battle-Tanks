@@ -4,7 +4,6 @@ import { entityEventKeys } from "../script-nodes/managers/scene-scripts/EntityMa
 import { EventCenter, QueryCenter } from "../utils";
 import { colorOptions, tankOptions, trackOptions } from "../../types";
 import Level from "../scenes/Level";
-import Tank from "../prefabs/tanks/Tank";
 
 export default (scene: Level) => {
   const { Tank } = entityComponents;
@@ -33,7 +32,7 @@ export default (scene: Level) => {
   }
 
   return defineSystem(world => {
-    QueryCenter.runQueries(world, tankQueries, enterTank, updateTank);
+    QueryCenter.runQueries(world, tankQueries, updateTank, enterTank);
 
     return world;
   });
