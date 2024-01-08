@@ -1,8 +1,7 @@
 import { defineSystem } from "bitecs";
 import { stateComponents, entityComponents } from "../components";
-import { entityEventKeys } from "../script-nodes/managers/scene-scripts/EntityManager";
+import { entityEventKeys } from "../../types/keys/event";
 import { EventCenter, QueryCenter } from "../utils";
-import { colorOptions, tankOptions, trackOptions } from "../../types";
 import Level from "../scenes/Level";
 
 export default (scene: Level) => {
@@ -16,11 +15,11 @@ export default (scene: Level) => {
       x: Position.x[entity],
       y: Position.y[entity],
       angle: Angle.current[entity],
-      color: Tank.color[entity] as colorOptions,
-      hullType: Tank.hullType[entity] as tankOptions,
-      turretType: Tank.turretType[entity] as tankOptions,
-      barrelType: Tank.barrelType[entity] as tankOptions,
-      trackType: Tank.trackType[entity] as trackOptions,
+      color: Tank.color[entity] as BattleTanks.Types.GameObjects.Tank.colorOptions,
+      hullType: Tank.hullType[entity] as BattleTanks.Types.GameObjects.Tank.tankOptions,
+      turretType: Tank.turretType[entity] as BattleTanks.Types.GameObjects.Tank.tankOptions,
+      barrelType: Tank.barrelType[entity] as BattleTanks.Types.GameObjects.Tank.tankOptions,
+      trackType: Tank.trackType[entity] as BattleTanks.Types.GameObjects.Tank.trackOptions,
     }));
   }
   const updateTank = (entity: number) => {

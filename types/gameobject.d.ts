@@ -1,5 +1,5 @@
 declare namespace Phaser.GameObjects {
   interface GameObjectFactory {
-    tank(config: import("./").tankConfig): import("../src/prefabs/tanks/Tank").ITank
+    tank(config: BattleTanks.Types.GameObjects.Tank.tankConfig): BattleTanks.GameObjects.Tank.ITank
   }
 }

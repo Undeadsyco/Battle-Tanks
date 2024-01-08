@@ -1,22 +1,6 @@
 
 // You can write more code here
 
-const systemKeys = {
-	render: "render",
-	movement: "movement",
-	AI: "AI"
-} as const;
-type systemKeys = keyof typeof systemKeys;
-type levelState = {
-	world: IWorld;
-	systems: Map<systemKeys, System>;
-	entities: Map<number, Tank>;
-}
-
-export const levelEventKeys = {
-	ADD_ENTITY_TO_SCENE: "add-entity-to-scene",
-}
-
 /* START OF COMPILED CODE */
 
 import Phaser from "phaser";
@@ -26,6 +10,8 @@ import { IWorld, System, createWorld } from "bitecs";
 import { EventCenter } from "../utils";
 import { AISystem, movementSystem, renderSystem } from "../systems";
 import Tank from "../prefabs/tanks/Tank";
+import { systemKeys } from "../../types/keys/system";
+import { levelEventKeys } from "../../types/keys/event";
 /* END-USER-IMPORTS */
 
 export default class Level extends Phaser.Scene {
@@ -57,7 +43,7 @@ export default class Level extends Phaser.Scene {
 
 	// Write your code here
 
-	private state: levelState = {
+	private state: BattleTanks.Types.Scenes.levelState = {
 		world: createWorld(),
 		systems: new Map([
 			[systemKeys.render, renderSystem(this)], [systemKeys.movement, movementSystem(this)], [systemKeys.AI, AISystem(this)],
@@ -66,9 +52,9 @@ export default class Level extends Phaser.Scene {
 	}
 
 	getWorld(): IWorld { return this.state.world }
-	getSystems(): Map<systemKeys, System> { return this.state.systems }
-	getEntities(): Map<number, Tank> { return this.state.entities }
-	getEntity(key: number): Tank | undefined { return this.state.entities.get(key); }
+	getSystems(): Map<BattleTanks.Types.Scenes.systemKeys, System> { return this.state.systems }
+	getEntities(): Map<number, BattleTanks.GameObjects.Tank.ITank> { return this.state.entities }
+	getEntity(key: number): BattleTanks.GameObjects.Tank.ITank | undefined { return this.state.entities.get(key); }
 
 	create() {
 		this.editorCreate();

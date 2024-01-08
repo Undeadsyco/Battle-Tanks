@@ -1,11 +1,5 @@
 
 // You can write more code here
-const trackPos = new Map<tankOptions, number>([
-	[1, 80], [2, 80], [3, 60], [4, 55], [5, 75], [6, 75], [7, 70], [8, 60], [9, 70], [10, 70], [11, 60], [12, 35], [13, 55], [14, 70], [15, 60], [16, 40]
-]);
-const turretPos = new Map<tankOptions, number>([
-	[1, 48], [2, 24], [3, 32], [4, 40], [5, 24], [6, 20], [7, 24], [8, 24], [9, 24], [10, 32], [11, 28], [12, 40], [13, 30], [14, 24], [15, 24], [16, 20]
-]);
 
 /* START OF COMPILED CODE */
 
@@ -13,10 +7,11 @@ import ScriptNode from "../../../script-nodes-basic/ScriptNode";
 import Phaser from "phaser";
 /* START-USER-IMPORTS */
 import Tank from "../../../prefabs/tanks/Tank";
-import { colorOptions, tankColors, tankOptions, trackOptions, vector } from "../../../../types";
-import { tankKeys } from "../../../../types/keys/tanks";
 import Hull from "../../../prefabs/tanks/components/Hull";
 import Turret from "../../../prefabs/tanks/components/Turret";
+import { tankColors } from "../../../../types";
+import { tankKeys } from "../../../../types/keys/gameObjects";
+import { tankMaps } from "../../../../types/maps/gameObjects";
 /* END-USER-IMPORTS */
 
 export default class TankTextureManagerScript extends ScriptNode {
@@ -51,7 +46,7 @@ export default class TankTextureManagerScript extends ScriptNode {
 		this.setHull(hull as Hull, turret as Turret);
 		this.setTurret((turret as Turret));
 
-		(turret as Turret).setPosition(0, turretPos.get(this.gameObject.hullType));
+		(turret as Turret).setPosition(0, tankMaps.turretPos.get(this.gameObject.hullType));
 	}
 
 	private setHull(hull: Hull, turret: Turret) {
@@ -129,7 +124,7 @@ export default class TankTextureManagerScript extends ScriptNode {
 
 		base.setTexture(key, frame);
 
-		const x = trackPos.get(this.gameObject.hullType)!;
+		const x = tankMaps.trackPos.get(this.gameObject.hullType)!;
 		left.setTexture(trackKey, trackFrame).setPosition(x, 0);
 		right.setTexture(trackKey, trackFrame).setPosition(-x, 0);
 	}

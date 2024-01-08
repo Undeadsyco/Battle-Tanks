@@ -1,30 +1,5 @@
 
 // You can write more code here
-import type { hullChildren } from './components/Hull';
-import type { turretChildren } from './components/Turret';
-
-export type tankChildren = {
-	hull: Hull | hullChildren;
-	turret: Turret | turretChildren;
-}
-
-export interface ITank {
-	get id(): number;
-	set id(val: number);
-	get color(): colorOptions;
-	set color(val: colorOptions);
-	get hullType(): tankOptions;
-	set hullType(val: tankOptions);
-	get turretType(): tankOptions;
-	set turretType(val: tankOptions);
-	get barrelType(): tankOptions;
-	set barrelType(val: tankOptions);
-	get trackType(): trackOptions;
-	set trackType(val: trackOptions);
-	get children(): tankChildren
-	init(config: tankConfig): this;
-	expandChildren(): tankChildren;
-}
 
 /* START OF COMPILED CODE */
 
@@ -33,7 +8,6 @@ import Hull from "./components/Hull";
 import Turret from "./components/Turret";
 import TankTextureManagerScript from "../../script-nodes/managers/gameobject-scripts/TankTextureManagerScript";
 /* START-USER-IMPORTS */
-import { colorOptions, tankConfig, tankOptions, trackOptions } from '../../../types';
 /* END-USER-IMPORTS */
 
 export default class Tank extends Phaser.GameObjects.Container {
@@ -80,49 +54,49 @@ export default class Tank extends Phaser.GameObjects.Container {
 	get id(): number { return this._id; }
 	set id(val: number) { this._id = val; }
 
-	private _color!: colorOptions;
-	get color(): colorOptions { return this._color; }
-	set color(val: colorOptions) {
+	private _color!: BattleTanks.Types.GameObjects.Tank.colorOptions;
+	get color(): BattleTanks.Types.GameObjects.Tank.colorOptions { return this._color; }
+	set color(val: BattleTanks.Types.GameObjects.Tank.colorOptions) {
 		this._color = val;
 		this.textureManager.setTexture();
 	}
 
-	private _hullType!: tankOptions;
-	get hullType(): tankOptions { return this._hullType; }
-	set hullType(val: tankOptions) {
+	private _hullType!: BattleTanks.Types.GameObjects.Tank.tankOptions;
+	get hullType(): BattleTanks.Types.GameObjects.Tank.tankOptions { return this._hullType; }
+	set hullType(val: BattleTanks.Types.GameObjects.Tank.tankOptions) {
 		this._hullType = val;
 		this.textureManager.setTexture();
 	}
 
-	private _turretType!: tankOptions;
-	get turretType(): tankOptions { return this._turretType; }
-	set turretType(val: tankOptions) {
+	private _turretType!: BattleTanks.Types.GameObjects.Tank.tankOptions;
+	get turretType(): BattleTanks.Types.GameObjects.Tank.tankOptions { return this._turretType; }
+	set turretType(val: BattleTanks.Types.GameObjects.Tank.tankOptions) {
 		this._turretType = val;
 		this.textureManager.setTexture();
 	}
 
-	private _barrelType!: tankOptions;
-	get barrelType(): tankOptions { return this._barrelType; }
-	set barrelType(val: tankOptions) {
+	private _barrelType!: BattleTanks.Types.GameObjects.Tank.tankOptions;
+	get barrelType(): BattleTanks.Types.GameObjects.Tank.tankOptions { return this._barrelType; }
+	set barrelType(val: BattleTanks.Types.GameObjects.Tank.tankOptions) {
 		this._barrelType = val;
 		this.textureManager.setTexture();
 	}
 
-	private _trackType!: trackOptions;
-	get trackType(): trackOptions { return this._trackType; }
-	set trackType(val: trackOptions) {
+	private _trackType!: BattleTanks.Types.GameObjects.Tank.trackOptions;
+	get trackType(): BattleTanks.Types.GameObjects.Tank.trackOptions { return this._trackType; }
+	set trackType(val: BattleTanks.Types.GameObjects.Tank.trackOptions) {
 		this._trackType = val;
 		this.textureManager.setTexture();
 	}
 
-	get children(): tankChildren {
+	get children(): BattleTanks.Types.GameObjects.Tank.tankChildren {
 		return ({
 			hull: this.hull,
 			turret: this.turret,
 		});
 	}
 
-	init(config: tankConfig): this {
+	init(config: BattleTanks.Types.GameObjects.Tank.tankConfig): this {
 		const { id, angle, color, hullType, trackType, turretType, barrelType } = config;
 		this._id = id;
 		this._color = color;
@@ -133,7 +107,7 @@ export default class Tank extends Phaser.GameObjects.Container {
 		return this;
 	}
 
-	expandChildren(): tankChildren {
+	expandChildren(): BattleTanks.Types.GameObjects.Tank.tankChildren {
 		return ({
 			hull: this.hull.children,
 			turret: this.turret.children

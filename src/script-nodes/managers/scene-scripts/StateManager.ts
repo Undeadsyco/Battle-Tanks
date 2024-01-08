@@ -1,12 +1,5 @@
 
 // You can write more code here
-export const stateEventKeys = {
-	ADD_MANY_COMPONENTS: "add-many-components",
-	ADD_ONE_COMPONENT: "add-one-component",
-	REMOVE_MANY_COMPONENTS: "remove-many-components",
-	REMOVE_ONE_COMPONENT: "remove-one-component",
-	CREATE_TANK_STATE: "create-tank-state",
-}
 
 /* START OF COMPILED CODE */
 
@@ -18,7 +11,7 @@ import Level from "../../../scenes/Level";
 import { addComponent, addEntity, removeComponent } from "bitecs";
 import { entityComponents, stateComponents, AIComponents } from "../../../components";
 import { EventCenter } from "../../../utils";
-import { colorOptions, componentConfig, componentList, optionalTankConfig, tankComponentList, tankOptions, trackOptions } from "../../../../types";
+import { stateEventKeys } from "../../../../types/keys/event";
 /* END-USER-IMPORTS */
 
 export default class StateManager extends ScriptNode {
@@ -43,7 +36,7 @@ export default class StateManager extends ScriptNode {
 		return addEntity(world);
 	}
 
-	private addOneComponent({ entity, obj }: { entity: number, obj: componentConfig }) {
+	private addOneComponent({ entity, obj }: { entity: number, obj: BattleTanks.Types.Components.componentConfig }) {
 		const { component, values } = obj;
 
 		addComponent(this.scene.getWorld(), component, entity);
@@ -52,26 +45,26 @@ export default class StateManager extends ScriptNode {
 		});
 	}
 
-	private addMultipleComponents<list extends componentList>({ entity, list }: { entity: number, list: list }) {
+	private addMultipleComponents<list extends BattleTanks.Types.Components.componentList>({ entity, list }: { entity: number, list: list }) {
 		for (let i = 0; i < list.length; i++) {
 			this.addOneComponent({ entity, obj: list[i] });
 		}
 		return entity;
 	}
 
-	private removeOneComponent({ entity, obj }: { entity: number, obj: componentConfig }) {
+	private removeOneComponent({ entity, obj }: { entity: number, obj: BattleTanks.Types.Components.componentConfig }) {
 		const { component } = obj;
 		removeComponent(this.scene.getWorld(), component, entity)
 	}
 
-	private removeMultipleComponents({ entity, list }: { entity: number, list: componentList }) {
+	private removeMultipleComponents({ entity, list }: { entity: number, list: BattleTanks.Types.Components.componentList }) {
 		list.forEach((obj) => {
 			this.removeOneComponent({entity, obj })
 		})
 	}
 
-	private createTankState(config: optionalTankConfig): number {
-		return this.addMultipleComponents<tankComponentList>({
+	private createTankState(config: BattleTanks.Types.GameObjects.Tank.optionalTankConfig): number {
+		return this.addMultipleComponents<BattleTanks.Types.Components.tankComponentList>({
 			entity: this.addEntity(),
 			list: [
 				{
@@ -94,7 +87,7 @@ export default class StateManager extends ScriptNode {
 				},
 				{
 					component: AIComponents.CPU,
-					values: { interval: 1000 }
+					values: { timer: 0, interval: 1000 }
 				}
 			]
 		});
@@ -106,11 +99,11 @@ export default class StateManager extends ScriptNode {
 			this.createTankState({
 				x: Phaser.Math.Between(width * 0.1, width * 0.9),
 				y: Phaser.Math.Between(height * 0.1, height * 0.9),
-				color: Phaser.Math.Between(0, 3) as colorOptions,
-				hullType: Phaser.Math.Between(1, 16) as tankOptions,
-				turretType: Phaser.Math.Between(1, 16) as tankOptions,
-				barrelType: Phaser.Math.Between(1, 16) as tankOptions,
-				trackType: Phaser.Math.Between(1, 8) as trackOptions,
+				color: Phaser.Math.Between(0, 3) as BattleTanks.Types.GameObjects.Tank.colorOptions,
+				hullType: Phaser.Math.Between(1, 16) as BattleTanks.Types.GameObjects.Tank.tankOptions,
+				turretType: Phaser.Math.Between(1, 16) as BattleTanks.Types.GameObjects.Tank.tankOptions,
+				barrelType: Phaser.Math.Between(1, 16) as BattleTanks.Types.GameObjects.Tank.tankOptions,
+				trackType: Phaser.Math.Between(1, 8) as BattleTanks.Types.GameObjects.Tank.trackOptions,
 				angle: Phaser.Math.Between(-180, 180),
 			})
 		}

@@ -1,11 +1,6 @@
 
 // You can write more code here
 
-export type turretChildren = {
-	base: Phaser.GameObjects.Image;
-	barrel: Phaser.GameObjects.Image;
-}
-
 /* START OF COMPILED CODE */
 
 import Phaser from "phaser";
@@ -41,7 +36,7 @@ export default class Turret extends Phaser.GameObjects.Container {
 
 	// Write your code here.
 
-	get children(): turretChildren {
+	get children(): BattleTanks.Types.GameObjects.Tank.turretChildren {
 		return ({
 			base: this.base,
 			barrel: this.barrel,

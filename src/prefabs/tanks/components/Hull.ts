@@ -1,14 +1,6 @@
 
 // You can write more code here
 
-export type hullChildren = {
-	base: Phaser.GameObjects.Image;
-	tracks: {
-		left: Phaser.GameObjects.Sprite;
-		right: Phaser.GameObjects.Sprite;
-	}
-}
-
 /* START OF COMPILED CODE */
 
 import Phaser from "phaser";
@@ -49,7 +41,7 @@ export default class Hull extends Phaser.GameObjects.Container {
 
 	// Write your code here.
 
-	get children(): hullChildren {
+	get children(): BattleTanks.Types.GameObjects.Tank.hullChildren {
 		return ({
 			base: this.base,
 			tracks: {

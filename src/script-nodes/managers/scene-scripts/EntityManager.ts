@@ -1,8 +1,5 @@
 
 // You can write more code here
-export const entityEventKeys = {
-	CREATE_TANK_ENTITY: "create-state-entity",
-} as const;
 
 /* START OF COMPILED CODE */
 
@@ -10,9 +7,9 @@ import ScriptNode from "../../../script-nodes-basic/ScriptNode";
 import Phaser from "phaser";
 /* START-USER-IMPORTS */
 import LevelManager from "./LevelManager";
-import Level, { levelEventKeys } from "../../../scenes/Level";
-import { tankConfig } from "../../../../types";
+import Level from "../../../scenes/Level";
 import { EventCenter } from "../../../utils";
+import { entityEventKeys, levelEventKeys } from "../../../../types/keys/event";
 /* END-USER-IMPORTS */
 
 export default class EntityManager extends ScriptNode {
@@ -32,7 +29,7 @@ export default class EntityManager extends ScriptNode {
 	override get scene() { return super.scene as Level }
 	override get parent() { return super.parent as LevelManager }
 
-	private createTankEntity(config: tankConfig) {
+	private createTankEntity(config: BattleTanks.Types.GameObjects.Tank.tankConfig) {
 		EventCenter.emitter.emit(`${this.scene.scene.key}-${levelEventKeys.ADD_ENTITY_TO_SCENE}`, { key: config.id, entity: this.scene.add.tank(config) });
 	}
 

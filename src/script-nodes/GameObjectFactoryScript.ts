@@ -6,7 +6,6 @@
 import ScriptNode from "../script-nodes-basic/ScriptNode";
 import Phaser from "phaser";
 /* START-USER-IMPORTS */
-import { tankConfig, } from "../../types";
 import Tank from "../prefabs/tanks/Tank";
 /* END-USER-IMPORTS */
 
@@ -25,7 +24,7 @@ export default class GameObjectFactoryScript extends ScriptNode {
 	// Write your code here.
 
 	protected override awake(): void {
-		Phaser.GameObjects.GameObjectFactory.register("tank", function (this: Phaser.GameObjects.GameObjectFactory, config: tankConfig) {
+		Phaser.GameObjects.GameObjectFactory.register("tank", function (this: Phaser.GameObjects.GameObjectFactory, config: BattleTanks.Types.GameObjects.Tank.tankConfig) {
 			const { id, x, y, angle, color, hullType, trackType, turretType, barrelType } = config;
 			const tank = new Tank(this.scene, x, y).init({ id, color, hullType, trackType, turretType, barrelType }).setAngle(angle);
 			this.displayList.add(tank);
