@@ -4,6 +4,7 @@
 const systemKeys = {
 	render: "render",
 	movement: "movement",
+	AI: "AI"
 } as const;
 type systemKeys = keyof typeof systemKeys;
 type levelState = {
@@ -23,7 +24,7 @@ import LevelManager from "../script-nodes/managers/scene-scripts/LevelManager";
 /* START-USER-IMPORTS */
 import { IWorld, System, createWorld } from "bitecs";
 import { EventCenter } from "../utils";
-import { movementSystem, renderSystem } from "../systems";
+import { AISystem, movementSystem, renderSystem } from "../systems";
 import Tank from "../prefabs/tanks/Tank";
 /* END-USER-IMPORTS */
 
@@ -59,7 +60,7 @@ export default class Level extends Phaser.Scene {
 	private state: levelState = {
 		world: createWorld(),
 		systems: new Map([
-			[systemKeys.render, renderSystem(this)], [systemKeys.movement, movementSystem(this)],
+			[systemKeys.render, renderSystem(this)], [systemKeys.movement, movementSystem(this)], [systemKeys.AI, AISystem(this)],
 		]),
 		entities: new Map(),
 	}
@@ -83,8 +84,9 @@ export default class Level extends Phaser.Scene {
 
 	update(time: number, delta: number): void {
 		const { systems } = this.state;
-		systems.get(systemKeys.render)?.(this.state.world);
+		systems.get(systemKeys.AI)?.(this.state.world);
 		systems.get(systemKeys.movement)?.(this.state.world);
+		systems.get(systemKeys.render)?.(this.state.world);
 	}
 
 	private addEntity({ key, entity }: { key: number, entity: Tank }) {
