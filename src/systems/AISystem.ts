@@ -2,7 +2,7 @@ import { defineSystem, hasComponent } from "bitecs";
 import Level from "../scenes/Level";
 import { EventCenter, QueryCenter, systemUtilFunctions } from "../utils";
 import { entityComponents, AIComponents, updateComponents, stateComponents } from '../components'
-import { stateEventKeys } from "../script-nodes/managers/scene-scripts/StateManager";
+import { stateEventKeys } from "../../types/keys/event";
 
 export default (scene: Level) => {
   const { Tank } = entityComponents, { CPU } = AIComponents, { Position, Angle } = stateComponents, { Velocity, Rotation } = updateComponents;

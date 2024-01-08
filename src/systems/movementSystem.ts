@@ -1,7 +1,7 @@
 import { defineSystem, hasComponent, removeComponent } from "bitecs"
 import { entityComponents, stateComponents, updateComponents } from "../components";
 import { EventCenter, QueryCenter, systemUtilFunctions } from "../utils";
-import { stateEventKeys } from "../script-nodes/managers/scene-scripts/StateManager";
+import { stateEventKeys } from "../../types/keys/event";
 import Level from "../scenes/Level";
 
 export default (scene: Level) => {
