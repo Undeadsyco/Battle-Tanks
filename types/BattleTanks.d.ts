@@ -132,10 +132,12 @@ declare namespace BattleTanks {
 
     namespace Scenes {
       type systemKeys = keyof typeof import("./keys/system").systemKeys;
+      type systemMap = Map<systemKeys, import("bitecs").System>;
+      type entityMap = Map<number, BattleTanks.GameObjects.Tank.ITank>;
       type levelState = {
         world: import("bitecs").IWorld;
-        systems: Map<systemKeys, import("bitecs").System>;
-        entities: Map<number, BattleTanks.GameObjects.Tank.ITank>;
+        systems: systemMap;
+        entities: entityMap;
       }
     }
 

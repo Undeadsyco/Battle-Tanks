@@ -43,19 +43,6 @@ export default class Level extends Phaser.Scene {
 
 	// Write your code here
 
-	private state: BattleTanks.Types.Scenes.levelState = {
-		world: createWorld(),
-		systems: new Map([
-			[systemKeys.render, renderSystem(this)], [systemKeys.movement, movementSystem(this)], [systemKeys.AI, AISystem(this)],
-		]),
-		entities: new Map(),
-	}
-
-	getWorld(): IWorld { return this.state.world }
-	getSystems(): Map<BattleTanks.Types.Scenes.systemKeys, System> { return this.state.systems }
-	getEntities(): Map<number, BattleTanks.GameObjects.Tank.ITank> { return this.state.entities }
-	getEntity(key: number): BattleTanks.GameObjects.Tank.ITank | undefined { return this.state.entities.get(key); }
-
 	create() {
 		this.editorCreate();
 
@@ -68,26 +55,13 @@ export default class Level extends Phaser.Scene {
 		world.setBounds(0, 0, width * zoom, height * zoom);
 	}
 
-	update(time: number, delta: number): void {
-		const { systems } = this.state;
-		systems.get(systemKeys.AI)?.(this.state.world);
-		systems.get(systemKeys.movement)?.(this.state.world);
-		systems.get(systemKeys.render)?.(this.state.world);
-	}
-
-	private addEntity({ key, entity }: { key: number, entity: Tank }) {
-		this.state.entities.set(key, entity);
-	}
-
 	private initEvents() {
-		EventCenter.emitter.on(`${this.scene?.key}-${levelEventKeys.ADD_ENTITY_TO_SCENE}`, this.addEntity, this);
 		EventCenter.emitter.on(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
 		this.levelManager?.initEvents();
 	}
 
 	private shutdown() {
 		this.levelManager.shutdown();
-		EventCenter.emitter.on(`${this.scene.key}-${levelEventKeys.ADD_ENTITY_TO_SCENE}`, this.addEntity, this);
 		EventCenter.emitter.off(Phaser.Scenes.Events.SHUTDOWN, this.shutdown, this);
 	}
 

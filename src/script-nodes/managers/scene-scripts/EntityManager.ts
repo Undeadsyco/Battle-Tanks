@@ -26,19 +26,13 @@ export default class EntityManager extends ScriptNode {
 
 	// Write your code here.
 
+	private	entities = new Map();
+
 	override get scene() { return super.scene as Level }
 	override get parent() { return super.parent as LevelManager }
 
-	private createTankEntity(config: BattleTanks.Types.GameObjects.Tank.tankConfig) {
-		EventCenter.emitter.emit(`${this.scene.scene.key}-${levelEventKeys.ADD_ENTITY_TO_SCENE}`, { key: config.id, entity: this.scene.add.tank(config) });
-	}
-
-	initEvents() {
-		EventCenter.emitter.on(`${this.scene.scene.key}-${entityEventKeys.CREATE_TANK_ENTITY}`, this.createTankEntity, this);
-	}
-
-	shutdown() {
-		EventCenter.emitter.off(`${this.scene.scene.key}-${entityEventKeys.CREATE_TANK_ENTITY}`, this.createTankEntity, this);
+	createTankEntity(config: BattleTanks.Types.GameObjects.Tank.tankConfig) {
+		this.entities.set(config.id, this.scene.add.tank(config));
 	}
 
 	/* END-USER-CODE */

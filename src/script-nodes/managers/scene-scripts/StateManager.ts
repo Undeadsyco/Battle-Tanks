@@ -8,10 +8,10 @@ import Phaser from "phaser";
 /* START-USER-IMPORTS */
 import LevelManager from "./LevelManager";
 import Level from "../../../scenes/Level";
-import { addComponent, addEntity, removeComponent } from "bitecs";
+import { IWorld, addComponent, addEntity, createWorld, removeComponent } from "bitecs";
 import { entityComponents, stateComponents, AIComponents } from "../../../components";
-import { EventCenter } from "../../../utils";
-import { stateEventKeys } from "../../../../types/keys/event";
+import { systemKeys } from "../../../../types/keys/system";
+import { AISystem, movementSystem, renderSystem } from "../../../systems";
 /* END-USER-IMPORTS */
 
 export default class StateManager extends ScriptNode {
@@ -28,44 +28,38 @@ export default class StateManager extends ScriptNode {
 
 	// Write your code here.
 
+	private world: IWorld = createWorld();
+	private systems: BattleTanks.Types.Scenes.systemMap = new Map([
+		[systemKeys.render, renderSystem(this.scene)], [systemKeys.movement, movementSystem(this.scene)], [systemKeys.AI, AISystem(this.scene)],
+	]);
+
 	override get scene() { return super.scene as Level }
 	override get parent() { return super.parent as LevelManager }
 
-	private addEntity(): number {
-		const world = this.scene.getWorld();
-		return addEntity(world);
-	}
-
-	private addOneComponent({ entity, obj }: { entity: number, obj: BattleTanks.Types.Components.componentConfig }) {
+	addOneComponent({ entity, obj }: { entity: number, obj: BattleTanks.Types.Components.componentConfig }) {
 		const { component, values } = obj;
-
-		addComponent(this.scene.getWorld(), component, entity);
-		if (values) Object.keys(values).forEach((key: string) => {
-			(component[key] as Array<number>)[entity] = values[key];
-		});
+		addComponent(this.world, component, entity);
+		if (values) Object.keys(values).forEach((key: string) => (component[key] as Array<number>)[entity] = values[key]);
 	}
 
-	private addMultipleComponents<list extends BattleTanks.Types.Components.componentList>({ entity, list }: { entity: number, list: list }) {
-		for (let i = 0; i < list.length; i++) {
-			this.addOneComponent({ entity, obj: list[i] });
-		}
+	addMultipleComponents<list extends BattleTanks.Types.Components.componentList>({ entity, list }: { entity: number, list: list }) {
+		list.forEach(obj => this.addOneComponent({ entity, obj }));
 		return entity;
 	}
 
-	private removeOneComponent({ entity, obj }: { entity: number, obj: BattleTanks.Types.Components.componentConfig }) {
+	removeOneComponent({ entity, obj }: { entity: number, obj: BattleTanks.Types.Components.componentConfig }) {
+		console.log('remove component', entity, obj);
 		const { component } = obj;
-		removeComponent(this.scene.getWorld(), component, entity)
+		removeComponent(this.world, component, entity)
 	}
 
-	private removeMultipleComponents({ entity, list }: { entity: number, list: BattleTanks.Types.Components.componentList }) {
-		list.forEach((obj) => {
-			this.removeOneComponent({entity, obj })
-		})
+	removeMultipleComponents({ entity, list }: { entity: number, list: BattleTanks.Types.Components.componentList }) {
+		list.forEach((obj) => this.removeOneComponent({ entity, obj }))
 	}
 
-	private createTankState(config: BattleTanks.Types.GameObjects.Tank.optionalTankConfig): number {
+	createTankState(config: BattleTanks.Types.GameObjects.Tank.optionalTankConfig): number {
 		return this.addMultipleComponents<BattleTanks.Types.Components.tankComponentList>({
-			entity: this.addEntity(),
+			entity: addEntity(this.world),
 			list: [
 				{
 					component: entityComponents.Tank,
@@ -109,20 +103,10 @@ export default class StateManager extends ScriptNode {
 		}
 	}
 
-	initEvents() {
-		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.CREATE_TANK_STATE}`, this.createTankState, this);
-		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.ADD_MANY_COMPONENTS}`, this.addMultipleComponents, this);
-		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.ADD_ONE_COMPONENT}`, this.addOneComponent, this);
-		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.REMOVE_MANY_COMPONENTS}`, this.removeMultipleComponents, this);
-		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.REMOVE_ONE_COMPONENT}`, this.removeOneComponent, this);
-	}
-
-	shutdown() {
-		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.CREATE_TANK_STATE}`, this.createTankState, this);
-		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.ADD_MANY_COMPONENTS}`, this.addMultipleComponents, this);
-		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.ADD_ONE_COMPONENT}`, this.addOneComponent, this);
-		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.REMOVE_MANY_COMPONENTS}`, this.removeMultipleComponents, this);
-		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.REMOVE_ONE_COMPONENT}`, this.removeOneComponent, this);
+	protected override update() {
+		this.systems.get(systemKeys.AI)?.(this.world);
+		this.systems.get(systemKeys.movement)?.(this.world);
+		this.systems.get(systemKeys.render)?.(this.world);
 	}
 
 	/* END-USER-CODE */

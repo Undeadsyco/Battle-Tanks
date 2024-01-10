@@ -9,6 +9,8 @@ import StateManager from "./StateManager";
 import EntityManager from "./EntityManager";
 /* START-USER-IMPORTS */
 import Level from "../../../scenes/Level";
+import { EventCenter } from "../../../utils";
+import { entityEventKeys, stateEventKeys } from "../../../../types/keys/event";
 /* END-USER-IMPORTS */
 
 export default class LevelManager extends ScriptNode {
@@ -41,13 +43,25 @@ export default class LevelManager extends ScriptNode {
 	override get parent() { return super.parent as Level }
 
 	initEvents() {
-		this.entityManager.initEvents();
-		this.stateManager.initEvents();
+		//
+		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.CREATE_TANK_STATE}`, this.stateManager.createTankState, this.stateManager);
+		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.ADD_MANY_COMPONENTS}`, this.stateManager.addMultipleComponents, this.stateManager);
+		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.ADD_ONE_COMPONENT}`, this.stateManager.addOneComponent, this.stateManager);
+		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.REMOVE_MANY_COMPONENTS}`, this.stateManager.removeMultipleComponents, this.stateManager);
+		EventCenter.emitter.on(`${this.scene.scene.key}-${stateEventKeys.REMOVE_ONE_COMPONENT}`, this.stateManager.removeOneComponent, this.stateManager);
+		//
+		EventCenter.emitter.on(`${this.scene.scene.key}-${entityEventKeys.CREATE_TANK_ENTITY}`, this.entityManager.createTankEntity, this.entityManager);
 	}
 
 	shutdown() {
-		this.entityManager.shutdown();
-		this.stateManager.shutdown();
+		//
+		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.CREATE_TANK_STATE}`, this.stateManager.createTankState, this.stateManager);
+		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.ADD_MANY_COMPONENTS}`, this.stateManager.addMultipleComponents, this.stateManager);
+		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.ADD_ONE_COMPONENT}`, this.stateManager.addOneComponent, this.stateManager);
+		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.REMOVE_MANY_COMPONENTS}`, this.stateManager.removeMultipleComponents, this.stateManager);
+		EventCenter.emitter.off(`${this.scene.scene.key}-${stateEventKeys.REMOVE_ONE_COMPONENT}`, this.stateManager.removeOneComponent, this.stateManager);
+		//
+		EventCenter.emitter.off(`${this.scene.scene.key}-${entityEventKeys.CREATE_TANK_ENTITY}`, this.entityManager.createTankEntity, this.entityManager);
 	}
 
 	/* END-USER-CODE */

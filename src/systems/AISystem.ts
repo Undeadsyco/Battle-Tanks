@@ -1,27 +1,26 @@
-import { defineSystem, hasComponent } from "bitecs";
+import { IWorld, defineSystem, hasComponent } from "bitecs";
 import Level from "../scenes/Level";
-import { EventCenter, QueryCenter, systemUtilFunctions } from "../utils";
+import { EventCenter, QueryCenter } from "../utils";
 import { entityComponents, AIComponents, updateComponents, stateComponents } from '../components'
 import { stateEventKeys } from "../../types/keys/event";
 
 export default (scene: Level) => {
   const { Tank } = entityComponents, { CPU } = AIComponents, { Position, Angle } = stateComponents, { Velocity, Rotation } = updateComponents;
-  const { checkHeading, checkPosition, calculateVelocity } = systemUtilFunctions;
   const tankBotQueries = QueryCenter.createQueries([Tank, Position, Angle, CPU]);
 
-  const updateTankBot = (entity: number) => {
+  const updateTankBot = (world: IWorld, entity: number) => {
 
     // check if timer as reached interval
     if (CPU.timer[entity] >= CPU.interval[entity]) {
 
       // checks to see if entity is moving;
-      if (hasComponent(scene.getWorld(), Velocity, entity)) {
+      if (hasComponent(world, Velocity, entity)) {
 
         // generate random number to decide action when moving
         const rand = Phaser.Math.Between(-1, 1);
 
         // check if its not already turning
-        if (rand !== 0 && !hasComponent(scene.getWorld(), Rotation, entity)) {
+        if (rand !== 0 && !hasComponent(world, Rotation, entity)) {
 
           // add rotation component to tank
           EventCenter.emitter.emit(`${scene.scene.key}-${stateEventKeys.ADD_ONE_COMPONENT}`, { entity, obj: { component: Rotation, values: { speed: rand } } });

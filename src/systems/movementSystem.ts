@@ -1,4 +1,4 @@
-import { defineSystem, hasComponent, removeComponent } from "bitecs"
+import { IWorld, defineSystem, hasComponent, removeComponent } from "bitecs"
 import { entityComponents, stateComponents, updateComponents } from "../components";
 import { EventCenter, QueryCenter, systemUtilFunctions } from "../utils";
 import { stateEventKeys } from "../../types/keys/event";
@@ -10,7 +10,7 @@ export default (scene: Level) => {
   const rotatingQueries = QueryCenter.createQueries([Tank, Position, Angle, Rotation], true);
   const movingQueries = QueryCenter.createQueries([Tank, Position, Angle, Velocity], true, true);
 
-  const startRotatingTanks = (entity: number) => {
+  const startRotatingTanks = (world: IWorld, entity: number) => {
     const { any, top, bottom, left, right } = checkPosition(scene, entity);
     const { topLeft, topRight, bottomLeft, bottomRight } = checkHeading(scene, entity);
 
@@ -45,7 +45,7 @@ export default (scene: Level) => {
     // assign new angle
     Angle.target[entity] = target;
   }
-  const updateRotatingTanks = (entity: number) => {
+  const updateRotatingTanks = (world: IWorld, entity: number) => {
 
     console.log("curretn",Angle.current[entity],"target", Angle.target[entity], "speed", Rotation.speed[entity])
     // check if current angle is not at target angle
@@ -63,12 +63,12 @@ export default (scene: Level) => {
     }
   }
 
-  const startMovingTanks = (entity: number) => {
+  const startMovingTanks = (world: IWorld, entity: number) => {
 
     // assign random distance
     Velocity.distance[entity] = Phaser.Math.Between(15, 20) * 64;
   }
-  const updateMovingTanks = (entity: number) => {
+  const updateMovingTanks = (world: IWorld, entity: number) => {
     // set velocity based on angle
     const { x, y } = calculateVelocity(entity);
     Velocity.x[entity] = x;
@@ -76,7 +76,7 @@ export default (scene: Level) => {
 
     const { any, top, bottom, left, right } = checkPosition(scene, entity);
     const { topLeft, topRight, bottomLeft, bottomRight } = checkHeading(scene, entity);
-    if (!hasComponent(scene.getWorld(), Rotation, entity) && any) {
+    if (!hasComponent(world, Rotation, entity) && any) {
       const turnLeft = ((top && topLeft) || (bottom && bottomRight) || (left && bottomLeft) || (right && topRight)),
         turnRight = ((top && topRight) || (bottom && bottomLeft) || (left && topLeft) || (right && bottomRight));
       let speed: number = 0;
@@ -97,7 +97,7 @@ export default (scene: Level) => {
     Position.y[entity] += Velocity.y[entity];
 
   }
-  const stopMovingTanks = (entity: number) => {
+  const stopMovingTanks = (world: IWorld, entity: number) => {
     Velocity.x[entity] = 0;
     Velocity.y[entity] = 0;
   }

@@ -7,6 +7,7 @@ import Phaser from "phaser";
 import Hull from "./components/Hull";
 import Turret from "./components/Turret";
 import TankTextureManagerScript from "../../script-nodes/managers/gameobject-scripts/TankTextureManagerScript";
+import TankEventManagerScript from "../../script-nodes/managers/gameobject-scripts/TankEventManagerScript";
 /* START-USER-IMPORTS */
 /* END-USER-IMPORTS */
 
@@ -25,6 +26,9 @@ export default class Tank extends Phaser.GameObjects.Container {
 
 		// textureManager
 		const textureManager = new TankTextureManagerScript(this);
+
+		// eventManager
+		new TankEventManagerScript(this);
 
 		this.hull = hull;
 		this.turret = turret;
@@ -97,7 +101,7 @@ export default class Tank extends Phaser.GameObjects.Container {
 	}
 
 	init(config: BattleTanks.Types.GameObjects.Tank.tankConfig): this {
-		const { id, angle, color, hullType, trackType, turretType, barrelType } = config;
+		const { id, color, hullType, trackType, turretType, barrelType } = config;
 		this._id = id;
 		this._color = color;
 		this._hullType = hullType;

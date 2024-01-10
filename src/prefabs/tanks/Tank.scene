@@ -46,6 +46,11 @@
                     "id": "9b702595-1344-4c18-8cf5-2d512a1ae128",
                     "label": "textureManager",
                     "scope": "CLASS"
+                },
+                {
+                    "prefabId": "842afcbb-b233-4d17-bfc2-189069b7efd6",
+                    "id": "1baa75cd-d908-402f-9d36-515abdae726a",
+                    "label": "eventManager"
                 }
             ]
         }

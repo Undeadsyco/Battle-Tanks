@@ -13,3 +13,8 @@ export const stateEventKeys = {
 	REMOVE_ONE_COMPONENT: "remove-one-component",
 	CREATE_TANK_STATE: "create-tank-state",
 } as const;
+
+export const tankEventKeys = {
+	UPDATE_TANK_POSITION: "update-tank-position",
+	UPDATE_TANK_ANGLE: "update-tank-angle",
+}

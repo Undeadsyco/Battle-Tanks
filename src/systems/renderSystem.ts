@@ -1,6 +1,6 @@
-import { defineSystem } from "bitecs";
+import { IWorld, defineSystem } from "bitecs";
 import { stateComponents, entityComponents } from "../components";
-import { entityEventKeys } from "../../types/keys/event";
+import { entityEventKeys, tankEventKeys } from "../../types/keys/event";
 import { EventCenter, QueryCenter } from "../utils";
 import Level from "../scenes/Level";
 
@@ -9,7 +9,7 @@ export default (scene: Level) => {
   const { Position, Angle } = stateComponents;
   const tankQueries = QueryCenter.createQueries([Tank, Position, Angle], true)
 
-  const enterTank = (entity: number) => {
+  const enterTank = (world: IWorld, entity: number) => {
     EventCenter.emitter.emit(`${scene.scene.key}-${entityEventKeys.CREATE_TANK_ENTITY}`, ({
       id: entity,
       x: Position.x[entity],
@@ -22,12 +22,9 @@ export default (scene: Level) => {
       trackType: Tank.trackType[entity] as BattleTanks.Types.GameObjects.Tank.trackOptions,
     }));
   }
-  const updateTank = (entity: number) => {
-    let gameObject = scene.getEntity(entity);
-    if (gameObject) {
-      gameObject.setPosition(Position.x[entity], Position.y[entity])
-      gameObject.setAngle(Angle.current[entity]);
-    }
+  const updateTank = (world: IWorld, entity: number) => {
+      EventCenter.emitter.emit(`${tankEventKeys.UPDATE_TANK_POSITION}-${entity}`, Position.x[entity], Position.y[entity]);
+      EventCenter.emitter.emit(`${tankEventKeys.UPDATE_TANK_ANGLE}-${entity}`, Angle.current[entity]);
   }
 
   return defineSystem(world => {
