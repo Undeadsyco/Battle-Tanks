@@ -47,7 +47,6 @@ export default (scene: Level) => {
   }
   const updateRotatingTanks = (world: IWorld, entity: number) => {
 
-    console.log("curretn",Angle.current[entity],"target", Angle.target[entity], "speed", Rotation.speed[entity])
     // check if current angle is not at target angle
     if (Angle.current[entity] !== Angle.target[entity]) {
 

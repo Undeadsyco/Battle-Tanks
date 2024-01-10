@@ -48,7 +48,6 @@ export default class StateManager extends ScriptNode {
 	}
 
 	removeOneComponent({ entity, obj }: { entity: number, obj: BattleTanks.Types.Components.componentConfig }) {
-		console.log('remove component', entity, obj);
 		const { component } = obj;
 		removeComponent(this.world, component, entity)
 	}
