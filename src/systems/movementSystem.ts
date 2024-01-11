@@ -1,7 +1,7 @@
 import { IWorld, defineSystem, hasComponent, removeComponent } from "bitecs"
 import { entityComponents, stateComponents, updateComponents } from "../components";
 import { EventCenter, QueryCenter, systemUtilFunctions } from "../utils";
-import { stateEventKeys } from "../../types/keys/event";
+import { levelEventKeys } from "../../types/keys/event";
 import Level from "../scenes/Level";
 
 export default (scene: Level) => {
@@ -58,7 +58,7 @@ export default (scene: Level) => {
       Rotation.speed[entity] = 0;
 
       // remove rotation component
-      EventCenter.emitter.emit(`${scene.scene.key}-${stateEventKeys.REMOVE_ONE_COMPONENT}`, { entity, obj: { component: Rotation } });
+      EventCenter.emitter.emit(`${scene.scene.key}-${levelEventKeys.REMOVE_ONE_COMPONENT}`, { entity, obj: { component: Rotation } });
     }
   }
 
@@ -83,13 +83,13 @@ export default (scene: Level) => {
       if (turnLeft) speed = -1;
       if (turnRight) speed = 1;
 
-      EventCenter.emitter.emit(`${scene.scene.key}-${stateEventKeys.ADD_ONE_COMPONENT}`, { entity, obj: { component: Rotation, values: { speed } } });
+      EventCenter.emitter.emit(`${scene.scene.key}-${levelEventKeys.ADD_ONE_COMPONENT}`, { entity, obj: { component: Rotation, values: { speed } } });
     }
 
     const x1 = Position.x[entity], y1 = Position.y[entity], x2 = Position.x[entity] + Velocity.x[entity], y2 = Position.y[entity] + Velocity.y[entity]
 
     if (Velocity.distance[entity] - Phaser.Math.Distance.Between(x1, y1, x2, y2) <= 0) {
-      EventCenter.emitter.emit(`${scene.scene.key}-${stateEventKeys.REMOVE_ONE_COMPONENT}`, { entity, obj: { component: Velocity } });
+      EventCenter.emitter.emit(`${scene.scene.key}-${levelEventKeys.REMOVE_ONE_COMPONENT}`, { entity, obj: { component: Velocity } });
     } else Velocity.distance[entity] -= Math.round(Phaser.Math.Distance.Between(x1, y1, x2, y2));
 
     Position.x[entity] += Velocity.x[entity];

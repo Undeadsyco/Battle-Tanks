@@ -1,7 +1,16 @@
 declare namespace BattleTanks {
-  namespace Components { }
+  namespace Components {
+  }
 
   namespace GameObjects {
+    namespace Spawner {
+      interface ISpawner extends Phaser.GameObjects.Rectangle {
+        init(): ISpawner;
+        shutdown(): void;
+        spawnObject(): void;
+      }
+    }
+
     namespace Tank {
       namespace Components {
         interface ITurret extends Phaser.GameObjects.Container {
@@ -16,6 +25,7 @@ declare namespace BattleTanks {
       interface ITank extends Phaser.GameObjects.Container {
         get id(): number;
         set id(val: number);
+        get spawner(): number;
         get color(): BattleTanks.Types.GameObjects.Tank.colorOptions;
         set color(val: BattleTanks.Types.GameObjects.Tank.colorOptions);
         get hullType(): BattleTanks.Types.GameObjects.Tank.tankOptions;
@@ -27,7 +37,7 @@ declare namespace BattleTanks {
         get trackType(): BattleTanks.Types.GameObjects.Tank.trackOptions;
         set trackType(val: BattleTanks.Types.GameObjects.Tank.trackOptions);
         get children(): Types.GameObjects.Tank.tankChildren
-        init(config: BattleTanks.Types.GameObjects.Tank.tankConfig): this;
+        init(config: BattleTanks.Types.GameObjects.Tank.config): this;
         expandChildren(): Types.GameObjects.Tank.tankChildren;
       }
     }
@@ -43,7 +53,10 @@ declare namespace BattleTanks {
     namespace Components {
       type ecsType = import("bitecs").Type;
 
+      // Entity Component Schemas
       type tankSchema = {
+        id: ecsType,
+        spawner: ecsType,
         color: ecsType,
         hullType: ecsType,
         trackType: ecsType,
@@ -51,15 +64,16 @@ declare namespace BattleTanks {
         barrelType: ecsType,
       }
 
-      type vectorSchema = {
-        x: ecsType,
-        y: ecsType,
+      type spawnerSchema = {
+        id: ecsType,
+        active: ecsType,
+        max: ecsType,
       }
 
-      type velocitySchema = {
+      // State Component Schemas
+      type positionSchema = {
         x: ecsType,
         y: ecsType,
-        distance: ecsType,
       }
 
       type angleSchema = {
@@ -67,8 +81,16 @@ declare namespace BattleTanks {
         target: ecsType,
       }
 
+      // Update Component Schemas
+      type velocitySchema = {
+        x: ecsType,
+        y: ecsType,
+        distance: ecsType,
+      }
+
       type rotationSchema = { speed: ecsType }
 
+      // AI Component Schemas
       type cpuSchema = {
         timer: ecsType,
         interval: ecsType,
@@ -81,10 +103,21 @@ declare namespace BattleTanks {
 
       type componentList = componentConfig[];
 
-      type tankComponentList = [componentConfig<tankSchema>, componentConfig<vectorSchema>, componentConfig<angleSchema>, componentConfig<cpuSchema>];
+      type tankComponentList = [componentConfig<tankSchema>, componentConfig<positionSchema>, componentConfig<angleSchema>, componentConfig<cpuSchema>];
+      type spawnerComponentList = [componentConfig<spawnerSchema>, componentConfig<positionSchema>, componentConfig<cpuSchema>]
     }
 
     namespace GameObjects {
+      namespace Spawner {
+        type config = {
+          id: number,
+          x: number,
+          y: number,
+          max?: number,
+          interval?: number,
+        }
+      }
+      
       namespace Tank {
         type tankOptions = Utils.Range<0, 17>
         type trackOptions = Utils.Range<0, 9>
@@ -92,8 +125,9 @@ declare namespace BattleTanks {
 
         type tankColor = keyof typeof import("./index").tankColors;
 
-        type tankConfig = {
+        type config = {
           id: number,
+          spawner: number,
           x?: number,
           y?: number,
           angle?: number,
@@ -104,7 +138,7 @@ declare namespace BattleTanks {
           turretType: tankOptions,
         }
 
-        type optionalTankConfig = Utils.optional<tankConfig>
+        type optionalConfig = Utils.optional<config>
 
         type hullChildren = {
           base: Phaser.GameObjects.Image;
