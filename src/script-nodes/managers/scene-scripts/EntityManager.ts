@@ -8,8 +8,6 @@ import Phaser from "phaser";
 /* START-USER-IMPORTS */
 import LevelManager from "./LevelManager";
 import Level from "../../../scenes/Level";
-import { EventCenter } from "../../../utils";
-import { entityEventKeys, levelEventKeys } from "../../../../types/keys/event";
 /* END-USER-IMPORTS */
 
 export default class EntityManager extends ScriptNode {
@@ -26,13 +24,29 @@ export default class EntityManager extends ScriptNode {
 
 	// Write your code here.
 
-	private	entities = new Map();
+	private _spawners = new Map();
+	get spawners() { return this._spawners; }
+
+	private _tanks = new Map();
+	get tanks() { return this._tanks }
 
 	override get scene() { return super.scene as Level }
 	override get parent() { return super.parent as LevelManager }
 
-	createTankEntity(config: BattleTanks.Types.GameObjects.Tank.tankConfig) {
-		this.entities.set(config.id, this.scene.add.tank(config));
+	createSpawner() {
+
+	}
+
+	addSpawner(config: BattleTanks.Types.GameObjects.Spawner.config) {
+		this._spawners.set(config.id, this.scene.add.spawner(config))
+	}
+
+	addTank(tank: BattleTanks.GameObjects.Tank.ITank) {
+		this._tanks.set(tank.id, tank);
+	}
+
+	protected update(): void {
+		this._tanks.forEach(tank => tank.update());
 	}
 
 	/* END-USER-CODE */
