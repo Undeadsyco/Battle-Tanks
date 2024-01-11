@@ -58,6 +58,9 @@ export default class Tank extends Phaser.GameObjects.Container {
 	get id(): number { return this._id; }
 	set id(val: number) { this._id = val; }
 
+	private _spawner!: number;
+	get spawner() { return this._spawner } 
+
 	private _color!: BattleTanks.Types.GameObjects.Tank.colorOptions;
 	get color(): BattleTanks.Types.GameObjects.Tank.colorOptions { return this._color; }
 	set color(val: BattleTanks.Types.GameObjects.Tank.colorOptions) {
@@ -100,8 +103,9 @@ export default class Tank extends Phaser.GameObjects.Container {
 		});
 	}
 
-	init(config: BattleTanks.Types.GameObjects.Tank.tankConfig): this {
-		const { id, color, hullType, trackType, turretType, barrelType } = config;
+	init(config: BattleTanks.Types.GameObjects.Tank.config): this {
+		const { id, spawner, color, hullType, trackType, turretType, barrelType } = config;
+		this._spawner = spawner;
 		this._id = id;
 		this._color = color;
 		this._hullType = hullType;
