@@ -33,8 +33,8 @@ export default class GameObjectFactoryScript extends ScriptNode {
 		});
 
 		Phaser.GameObjects.GameObjectFactory.register("spawner", function (this: Phaser.GameObjects.GameObjectFactory, config: BattleTanks.Types.GameObjects.Spawner.config) {
-			const { id, x, y, max, interval } = config;
-			const spawner = new Spawner(this.scene, x, y).init(id, max, interval);
+			const { id, x, y, max } = config;
+			const spawner = new Spawner(this.scene, x, y).init(id, max);
 
 			this.displayList.add(spawner);
 

@@ -114,7 +114,6 @@ declare namespace BattleTanks {
           x: number,
           y: number,
           max?: number,
-          interval?: number,
         }
       }
       

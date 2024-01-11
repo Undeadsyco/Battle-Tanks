@@ -114,7 +114,7 @@ export default class StateManager extends ScriptNode {
 				},
 				{
 					component: AIComponents.CPU,
-					values: { timer: 0, interval: config.interval ?? Phaser.Math.Between(2, 5) }
+					values: { timer: 0, interval: Phaser.Math.Between(2, 5) }
 				}
 			]
 		});

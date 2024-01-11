@@ -45,8 +45,8 @@ export default class LevelManager extends ScriptNode {
 
 	protected override start(): void {
 		const { width, height } = this.scene.physics.world.bounds;
-		this.stateManager.createSpawnerState({ id: 0, x: width * 0.2, y: height * 0.2, max: Phaser.Math.Between(2, 5), interval: Phaser.Math.Between(2, 5) })
-		this.stateManager.createSpawnerState({ id: 1, x: width * 0.8, y: height * 0.8, max: Phaser.Math.Between(2, 5), interval: Phaser.Math.Between(2, 5) })
+		this.stateManager.createSpawnerState({ id: 0, x: width * 0.2, y: height * 0.2, max: Phaser.Math.Between(2, 5) })
+		this.stateManager.createSpawnerState({ id: 1, x: width * 0.8, y: height * 0.8, max: Phaser.Math.Between(2, 5) })
 	}
 
 	protected override update() {

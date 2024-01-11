@@ -10,6 +10,7 @@ export default (scene: Level) => {
   const tankBotQueries = QueryCenter.createQueries([Tank, Position, Angle, CPU]);
 
   const updateSpawnerBot = (world: IWorld, entity: number) => {
+    console.log(CPU.timer[entity], CPU.interval[entity])
     if (CPU.timer[entity] >= CPU.interval[entity] * 1000) {
       if (Spawner.active[entity] < Spawner.max[entity]) EventCenter.emitter.emit(`spawner-${Spawner.id[entity]}-create-state`);
       
